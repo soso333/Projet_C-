@@ -1,6 +1,6 @@
 class Tresor : public Case {
 
-    """ Classe permettant de définir le trésor qu'un joueur peut avoir
+    /* Classe permettant de définir le trésor qu'un joueur peut avoir
 
     Paramètres : 
         valeur : int (private)
@@ -17,7 +17,7 @@ class Tresor : public Case {
 
         appliqueEffet() : int
         Permet d'appliquer l'effet du trésor sur le joueur 
-    """
+    */
 
     private : 
         int valeur;
