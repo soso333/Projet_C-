@@ -4,7 +4,9 @@ class Tresor : public Case {
 
     Paramètres : 
         valeur : int (private)
-        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 pts de vie)
+        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 trésors)
+        nb_tresor : int (private)
+        Permet de définir le nb de trésor qu'un joueur possède
 
     Méthode : 
         init : void 
@@ -13,27 +15,28 @@ class Tresor : public Case {
         afficher() : char
         Permet d'afficher la chaîne de caractère représentant le trésor dans le labyrinthe (par +)
 
-        appliqueEffet() : void 
-        Permet d'appliquer l'effet du trésor sur le joueur (exemple : augmenter les points de vie du joueur)
-
-
+        appliqueEffet() : int
+        Permet d'appliquer l'effet du trésor sur le joueur 
     """
 
     private : 
         int valeur;
+        int nb_tresor;
 
     public : 
-        //jsp 
-        void init(int a){
-            valeur = a
+        void init(int a, int b){
+            valeur = a;
+            nb_tresor = b;
         }
+
         char afficher(){
-            char a = '+';
-            return a;
+            char b = '+';
+            return b;
         }
 
-        void appliqueEffet(){
-
+        virtual int appliqueEffet(){
+            nb_tresor += valeur;
+            return nb_tresor;
         }
 
 };
