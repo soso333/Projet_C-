@@ -1,7 +1,7 @@
-//classe ........
-
 class Piege : public Case {
-
-    //blablablla
-
+    public:
+        char afficher(){
+            char a = 'T';
+            return a;
+        }
 };

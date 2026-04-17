@@ -1,7 +1,9 @@
 //classe ........
 
 class Mur : public Case {
-
-    //blablablla
-
+    public:
+        char afficher(){
+            char a = '#';
+            return a;
+        }
 };

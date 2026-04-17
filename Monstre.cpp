@@ -1,7 +1,7 @@
-//classe ........
-
-class Monstre : public Case {
-
-    //blablablla
-
+class Monstre : public Case{
+    public:
+        char afficher(){
+            char a = 'M';
+            return a;
+        }
 };
