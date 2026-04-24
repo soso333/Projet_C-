@@ -5,3 +5,5 @@ class Aventurier : public Case {
             return a;
         }
 };
+
+//Morgane
