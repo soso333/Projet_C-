@@ -3,6 +3,6 @@
 class Case { 
     public:
         virtual char afficher() = 0; 
-        virtuel ~Case() = default;
+        virtual ~Case() = default;
 };
 

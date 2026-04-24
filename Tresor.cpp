@@ -5,8 +5,6 @@ class Tresor : public Case {
     Paramètres : 
         valeur : int (private)
         Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 trésors)
-        nb_tresor : int (private)
-        Permet de définir le nb de trésor qu'un joueur possède
 
     Méthode : 
         init : void 
@@ -21,12 +19,10 @@ class Tresor : public Case {
 
     private : 
         int valeur;
-        int nb_tresor;
 
     public : 
-        void init(int a, int b){
+        void init(int a){
             valeur = a;
-            nb_tresor = b;
         }
 
         char afficher(){
@@ -34,9 +30,9 @@ class Tresor : public Case {
             return b;
         }
 
-        virtual int appliqueEffet(){
-            nb_tresor += valeur;
-            return nb_tresor;
+        virtual int appliqueEffet(int points_de_vie_joueur){
+            points_de_vie_joueur += valeur;
+            return points_de_vie_joueur;
         }
 
 };
