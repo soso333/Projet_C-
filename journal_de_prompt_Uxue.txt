@@ -1,0 +1,136 @@
+Gemini:
+
+1.Je ne sais pas comment corriger mon code. J'ai modifié la classe Case en ajoutant un bool pour les marquer comme visitées ou pas.
+"    // Classe abstraite de base 
+
+    class Case {
+        private:
+            bool visite = false; 
+        public:
+            virtual char afficher() = 0; 
+            virtual int appliqueEffet(int points_de_vie_joueur) = 0;
+            virtual ~Case() = default;
+            bool getVisite(){
+                return visite;
+            };
+            void setVisite(bool visit){
+                visite = visit;
+            };
+    };
+
+    //Uxue
+    #include <vector>
+    #include <iostream>
+    #include "Mur.h"
+    #include "Passage.h"
+    //using namespace std;
+
+    class Donjon { 
+        vector<vector<Case::Case*>> grille;
+        private:
+            int l;
+            int h;
+        public : 
+            void generer(int largeur, int hauteur) {
+                l = largeur;
+                h = hauteur;
+                grille.resize(hauteur, largeur);
+                for(int i = 0; i<hauteur; i++){
+                    for(int j = 0; j<largeur; j++){
+                        grille[i][j] = Mur; //CaseFactory?
+                    };
+                };
+            }
+
+            void afficher(){
+                //blablabla
+            }
+
+            vector<pair<int, int>> trouverChemin(...);
+
+            void genererLabyrinthe(grille, int x, int y){
+                grille[x][y]->setVisite(true);
+                int NORD[2] = {-2, 0};
+                int SUD[2] = {2, 0};
+                int EST[2] = {0, 2};
+                int OUEST[2] = {0, -2};
+                int *directions[4] = {NORD, SUD, EST, OUEST};
+                *directions = std::shuffle(std::begin(directions), std::end(directions))
+
+                for(int i = 0; i<4; i++){
+                    int d = *directions[i];
+                    int nx = d[0] + x;
+                    int ny = d[1] + y;
+                    if(nx >= 0 && ny >= 0 && nx < h && ny < l && grille[nx][ny] -> getVisite false){
+                        grille[x][y] = Passage;
+                        genererLabyrinthe(&grille, nx, ny);
+                    }
+                }
+        };
+    }
+    "
+2.Mon code est mieux maintenant ou pas? Oublie pas que je n'ai pas encore de CaseFactory, donc j'ai laissé Mur ou Passage ==> ne me parle pas Mur ou Passage.
+"
+    //Uxue
+    #include <vector>
+    #include <iostream>
+    #include "Mur.h"
+    #include "Passage.h"
+    //using namespace std;
+
+    class Donjon { 
+        vector<vector<Case*>> grille;
+        private:
+            int l;
+            int h;
+        public : 
+            void generer(int largeur, int hauteur) {
+                l = largeur;
+                h = hauteur;
+                grille.resize(hauteur);
+                for(int i = 0; i < hauteur; i++) {
+                    grille[i].resize(largeur);
+                }
+                for(int i = 0; i<hauteur; i++){
+                    for(int j = 0; j<largeur; j++){
+                        grille[i][j] = Mur; //CaseFactory?
+                    };
+                };
+            }
+
+            void afficher(){
+                //blablabla
+            }
+
+            vector<pair<int, int>> trouverChemin(...);
+
+            void genererLabyrinthe(int x, int y){
+                grille[x][y]->setVisite(true);
+                int NORD[2] = {-2, 0};
+                int SUD[2] = {2, 0};
+                int EST[2] = {0, 2};
+                int OUEST[2] = {0, -2};
+                int *directions[4] = {NORD, SUD, EST, OUEST};
+
+                // Mélange
+                int indices[4] = {0, 1, 2 ,3};
+                std::shuffle(std::begin(indices), std::end(indices), std::mt19937)
+                
+                for(int i = 0; i<4; i++){
+                    int *d = directions[indices[i]];
+                    int nx = d[0] + x;
+                    int ny = d[1] + y;
+
+                    int nx1 = d[0]/2 + x;
+                    int ny1 = d[1]/2 + y;
+
+                    if(nx >= 0 && ny >= 0 && nx < h && ny < l && grille[nx][ny] -> getVisite() == false){
+                        grille[x][y] = Passage;
+                        grille[nx1][ny1] = Passage;
+                        grille[nx1][ny1]->setVisite(true);
+                        genererLabyrinthe(nx, ny);
+                    }
+                }
+            }
+    };
+"
