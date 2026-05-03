@@ -1,5 +1,7 @@
-// Classe abstraite de base 
+// PAS BESOIN CAR DÉFINI DANS Case.h
 
+// Classe abstraite de base 
+/*
 class Case {
     private:
         bool visite = false; 
@@ -15,4 +17,6 @@ class Case {
         };
         
 };
+*/
+
 
