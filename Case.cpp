@@ -13,5 +13,6 @@ class Case {
         void setVisite(bool visit){
             visite = visit;
         };
+        
 };
 
