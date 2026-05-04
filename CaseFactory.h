@@ -1,3 +1,5 @@
+#include "Case.h"
+
 #ifndef CASEFACTORY_H
 #define CASEFACTORY_H
 

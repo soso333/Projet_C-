@@ -1,3 +1,6 @@
+// PAS BESOIN CAR DÉFINI DANS Aventurier.h
+
+/*
 class Aventurier : public Case {
     private:
         int pv;
@@ -32,5 +35,7 @@ class Aventurier : public Case {
         }
 
 };
+
+*/
 
 //Morgane
