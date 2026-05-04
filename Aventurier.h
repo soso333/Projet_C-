@@ -4,8 +4,8 @@ using namespace std;
 #ifndef AVENTURIER_H
 #define AVENTURIER_H
 
-class Aventurier : public Case {
-    private:
+class Aventurier {
+    public:
         int pv;
         int x, y;
         int inventaire;
@@ -17,7 +17,7 @@ class Aventurier : public Case {
            y = 0;
            inventaire = 0; 
         };
-        ~Aventurier();
+        ~Aventurier() = default;
 
         char constafficher(){
             char a = '@';

@@ -2,6 +2,7 @@
 #define MONSTRE_H
 
 #include <iostream>
+#include "Aventurier.h"
 
 class Monstre : public Case{
 
@@ -57,8 +58,8 @@ class Monstre : public Case{
         void fuite(Aventurier& aventurier, int position_precedente_x, int position_precedente_y, bool est_fuite){
 
             if (est_fuite == true) { 
-                aventurier.position_x = position_precedente_x;
-                aventurier.position_y = position_precedente_y;
+                aventurier.x = position_precedente_x;
+                aventurier.y = position_precedente_y;
             }
         }
 

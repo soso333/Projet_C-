@@ -1,7 +1,7 @@
 // PAS BESOIN CAR DÉFINI DANS Aventurier.h
 
 /*
-class Aventurier : public Case {
+class Aventurier {
     private:
         int pv;
         int x, y;

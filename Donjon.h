@@ -1,6 +1,7 @@
 #ifndef DONJON_H
 #define DONJON_H
 
+#include <algorithm>
 #include <vector>
 #include <iostream>
 #include <random>
