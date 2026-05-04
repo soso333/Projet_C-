@@ -1,6 +1,9 @@
+// PAS BESOIN CAR DÉFINI DANS Mur.h
+
+/*
 class Mur : public Case {
 
-    /* Classe permettant de définir un mur
+     Classe permettant de définir un mur
 
     Méthode : 
         afficher() : char
@@ -8,7 +11,7 @@ class Mur : public Case {
 
         appliqueEffet() : int
         Les PV du joueur restent inchangés, mais il faut quand même définir cette méthode pour que le code compile, vu que c'est une méthode virtuelle pure dans la classe Case
-    */
+    
 
     public:
         char afficher(){
@@ -20,3 +23,4 @@ class Mur : public Case {
             return points_de_vie_joueur;
         }
 };
+*/

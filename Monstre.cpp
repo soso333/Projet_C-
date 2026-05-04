@@ -1,8 +1,11 @@
+// PAS BESOIN CAR DÉFINI DANS Monstre.h
+
+/*
 #include <iostream>
 
 class Monstre : public Case{
 
-    /* Classe permettant de définir le monstre qu'un joueur peut rencontrer
+     Classe permettant de définir le monstre qu'un joueur peut rencontrer
 
     Paramètres : 
         valeur : int (private)
@@ -26,7 +29,7 @@ class Monstre : public Case{
 
         vaincu() : void
         Permet de dire si le monstre est vaincu ou pas s'il y a combat (s'il fuit pas)
-    */
+    
 
     private : 
         int valeur;
@@ -69,3 +72,5 @@ class Monstre : public Case{
 
 
 };
+
+*/

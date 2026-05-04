@@ -1,6 +1,9 @@
+// PAS BESOIN CAR DÉFINI DANS Piege.h
+
+/*
 class Piege : public Case {
 
-    /*
+    
     Classe permettant de définir une case piège dans le labyrinthe 
 
     Paramètres : 
@@ -20,7 +23,7 @@ class Piege : public Case {
         Permet d'appliquer l'effet du piège sur le joueur
     
     
-    */
+    
     private : 
         int degats;
 
@@ -39,4 +42,4 @@ class Piege : public Case {
             points_de_vie_joueur -= degats; 
             return points_de_vie_joueur;
         }
-};
+};  */

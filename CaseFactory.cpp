@@ -1,12 +1,11 @@
 #include "CaseFactory.h"
 #include "Case.h"
 
-// Il faut faire les headers de :
-//#include "Mur.h"
-//#include "Passage.h"
-//#include "Tresor.h"
-//#include "Monstre.h"
-//#include "Piege.h"
+#include "Mur.h"
+#include "Passage.h"
+#include "Tresor.h"
+#include "Monstre.h"
+#include "Piege.h"
 
 
 Case* CaseFactory::creerCase(TypeCase type) {
