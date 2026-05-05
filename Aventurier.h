@@ -47,20 +47,39 @@ class Aventurier {
         };
 
         void boucleDeJeu(Donjon& d){
-            for(int i = 0; i<d.h; i++){
-                for(int j = 0; j<d.l; j++){
-                    if (i == x && j == y) {
-                        cout << constafficher();
-                    }
-                    else {
-                        cout << d.grille[i][j] -> afficher(); 
-                    }
+            while (estVivant() == true){
+                // AFFICHAGE DU DONJON ET JOUEUR
+                for(int i = 0; i<d.h; i++){
+                    for(int j = 0; j<d.l; j++){
+                        if (i == x && j == y) {
+                            cout << constafficher();
+                        }
+                        else {
+                            cout << d.grille[i][j] -> afficher(); 
+                        }
+                    };
+                cout << endl;
                 };
-            cout << endl;
-            };
+                cout << "" << endl;
+                afficherStatut();
 
-            cout << "" << endl;
-            afficherStatut();
+                // LECTURE TOUCHE
+                char direction;
+                cin >> direction;
+                if (direction == 'z'){
+                    deplacer(-1, 0);
+                }
+                else if (direction == 's') {
+                    deplacer(1, 0);
+                }
+                else if (direction == 'q') {
+                    deplacer(0, -1);
+                }
+                else if (direction == 'd') {
+                    deplacer(0, 1);
+                }
+            }
+
         };
 
 };
