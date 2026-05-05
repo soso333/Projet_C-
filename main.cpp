@@ -4,8 +4,9 @@
 
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
     Donjon terrain;
-    terrain.initialiserGrille(20,20);
+    terrain.initialiserGrille(21,21);
+    terrain.placerElements();
+    terrain.afficher();
     return 0;
 }

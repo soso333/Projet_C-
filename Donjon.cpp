@@ -38,7 +38,9 @@ void Donjon::genererLabyrinthe(int x, int y){
             grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
             grille[nx1][ny1] = CaseFactory::creerCase(TypeCase::Passage);
             grille[nx][ny] = CaseFactory::creerCase(TypeCase::Passage);
+            grille[x][y]->setVisite(true);
             grille[nx1][ny1]->setVisite(true);
+
             genererLabyrinthe(nx, ny);
         }
     }
@@ -56,7 +58,7 @@ void Donjon::initialiserGrille(int largeur, int hauteur) {
             grille[i][j] = CaseFactory::creerCase(TypeCase::Mur); //CaseFactory?
         };
     };
-    genererLabyrinthe(1, 1);
+    genererLabyrinthe(0, 0);
     delete grille[0][0];
     delete grille[hauteur-1][largeur-1];
     grille[0][0] = CaseFactory::creerCase(TypeCase::Passage); //poserEntree(grille);
