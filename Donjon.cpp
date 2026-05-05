@@ -87,7 +87,7 @@ void Donjon::placerElements(){
     }
 }
 
-/*
+
 vector<pair<int, int>> Donjon::trouverChemin(pair<int, int> depart,  pair<int, int> arrivee){
     queue<pair<int, int>> file = {};
     vector<vector<bool>> visite(h, vector<bool>(l));
@@ -134,8 +134,17 @@ vector<pair<int, int>> Donjon::trouverChemin(pair<int, int> depart,  pair<int, i
 
 
 }
-vector<pair<int, int>> Donjon::reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee){
 
+
+vector<pair<int, int>> Donjon::reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee){
+    vector<pair<int, int>> chemin = {};
+    pair<int, int> courant = arrivee;
+
+    while(courant != depart){
+        chemin.insert(chemin.begin(), courant);
+        courant = parent[courant.first][courant.second];
+    }
+    chemin.insert(chemin.begin(), depart);
+    return chemin;
 }
 
-*/
