@@ -1,5 +1,6 @@
 #ifndef TRESOR_H
 #define TRESOR_H
+#include "Case.h"
 
 class Tresor : public Case {
 
@@ -24,6 +25,10 @@ class Tresor : public Case {
         int valeur;
 
     public : 
+        Tresor(){
+            type = TypeCase::Tresor;
+        };
+
         void init(int a){
             valeur = a;
         }

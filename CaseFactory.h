@@ -3,6 +3,7 @@
 #ifndef CASEFACTORY_H
 #define CASEFACTORY_H
 
+class Case;
 
 enum class TypeCase{
     Mur,

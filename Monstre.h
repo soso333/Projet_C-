@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include "Aventurier.h"
+#include "Case.h"
 
 class Monstre : public Case{
 
@@ -37,6 +38,10 @@ class Monstre : public Case{
         int pv;
 
     public : 
+        Monstre(){
+            type = TypeCase::Monstre;
+        };
+
         void init(int a, int b){
             valeur = a;
             pv = b;

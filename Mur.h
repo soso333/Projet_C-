@@ -1,5 +1,6 @@
 #ifndef MUR_H
 #define MUR_H
+#include "Case.h"
 
 class Mur : public Case {
 
@@ -14,6 +15,10 @@ class Mur : public Case {
     */
 
     public:
+        Mur() {
+            type = TypeCase::Mur;
+        }
+        
         char afficher(){
             char a = '#';
             return a;

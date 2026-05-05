@@ -1,5 +1,6 @@
 #ifndef PASSAGE_H
 #define PASSAGE_H
+#include "Case.h"
 
 class Passage : public Case {
 
@@ -14,6 +15,10 @@ class Passage : public Case {
     */
 
     public:
+        Passage(){
+            type = TypeCase::Passage;
+        }
+        
         char afficher(){
             char a = ' ';
             return a;

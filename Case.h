@@ -1,6 +1,8 @@
 #ifndef CASE_H
 #define CASE_H
 
+#include "CaseFactory.h"
+
 
 class Case {
     /*
@@ -23,17 +25,19 @@ class Case {
             Setter du paramètre visite. Modifie l'état de la case.
     */
     private:
-            bool visite = false; 
-        public:
-            virtual char afficher() = 0; 
-            virtual int appliqueEffet(int points_de_vie_joueur) = 0;
-            virtual ~Case() = default;
-            bool getVisite(){
-                return visite;
-            };
-            void setVisite(bool visit){
-                visite = visit;
-            };
+            bool visite = false;
+            
+    public:
+        TypeCase type; 
+        virtual char afficher() = 0; 
+        virtual int appliqueEffet(int points_de_vie_joueur) = 0;
+        virtual ~Case() = default;
+        bool getVisite(){
+            return visite;
+        };
+        void setVisite(bool visit){
+            visite = visit;
+        };
 };
 
 #endif

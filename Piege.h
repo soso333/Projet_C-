@@ -1,5 +1,6 @@
 #ifndef PIEGE_H
 #define PIEGE_H
+#include "Case.h"
 
 class Piege : public Case {
 
@@ -28,6 +29,9 @@ class Piege : public Case {
         int degats;
 
     public:
+        Piege(){
+            type = TypeCase::Piege;
+        }
 
         void init(int a){
             degats = a; 
