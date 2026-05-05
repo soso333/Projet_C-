@@ -5,6 +5,8 @@
 #include <vector>
 #include <iostream>
 #include <random>
+#include <queue>
+#include <map>
 #include "CaseFactory.h"
 #include "Case.h"
 using namespace std;
@@ -31,14 +33,18 @@ class Donjon{
             Permet de placer les pièges, les monstres et les trésors sur la grille.
         - afficher() : void
             Permet l'affichage de la grille.
-    */
+        - trouverChemin(pair<int, int> depart, pair<int, int> arrivee) : vector<pair<int, int>>
+            Permet de trouver le chemin le plus court de la grille
+        - reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee) : vector<pair<int, int>>  
+            Permet de reconstruire et de tracer le chemin le plus court de la grille
+        */
     
     public:
         vector<vector<Case*>> grille;
         int l;
         int h;
     public :
-        vector<pair<int, int>> trouverChemin(...);
+        
         Donjon(){
            h = 0;
            l = 0; 
@@ -48,6 +54,8 @@ class Donjon{
         void initialiserGrille(int largeur, int hauteur);
         void placerElements();
         void afficher();
-};
+        vector<pair<int, int>> trouverChemin(pair<int, int> depart, pair<int, int> arrivee);
+        vector<pair<int, int>> reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee);
+    };
 
 #endif
