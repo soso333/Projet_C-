@@ -32,8 +32,9 @@ class Donjon{
         - afficher() : void
             Permet l'affichage de la grille.
     */
-    vector<vector<Case*>> grille;
-    private:
+    
+    public:
+        vector<vector<Case*>> grille;
         int l;
         int h;
     public :

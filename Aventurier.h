@@ -1,4 +1,5 @@
 #include <iostream>
+#include "Donjon.h"
 using namespace std;
 
 #ifndef AVENTURIER_H
@@ -31,13 +32,35 @@ class Aventurier {
         };
 
         bool estVivant(){
-            return pv > 0;
+            if (pv > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
         };
 
         void afficherStatut(){
             cout << "Position : ( " << x << " , " << y << " )" << endl;
             cout << "Sante : " << pv << "/100" << endl;
             cout << "Inventaire : " << inventaire << " tresors" << endl;
+        };
+
+        void boucleDeJeu(Donjon& d){
+            for(int i = 0; i<d.h; i++){
+                for(int j = 0; j<d.l; j++){
+                    if (i == x && j == y) {
+                        cout << constafficher();
+                    }
+                    else {
+                        cout << d.grille[i][j] -> afficher(); 
+                    }
+                };
+            cout << endl;
+            };
+
+            cout << "" << endl;
+            afficherStatut();
         };
 
 };

@@ -87,11 +87,3 @@ void Donjon::placerElements(){
     }
 }
 
-void Donjon::afficher(){
-            for(int i = 0; i<h; i++){
-                for(int j = 0; j<l; j++){
-                    cout << grille[i][j] -> afficher(); 
-                };
-            cout << endl;
-            };
-        }
