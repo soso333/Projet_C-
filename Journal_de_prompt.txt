@@ -1,0 +1,1243 @@
+Journal de prompt : 
+
+1. Est-ce que tu valides mon code ? "class Tresor : public Case {
+
+    /* Classe permettant de définir le trésor qu'un joueur peut avoir
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 trésors)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur du trésor
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le trésor dans le labyrinthe (par +)
+
+        appliqueEffet() : int
+        Permet d'appliquer l'effet du trésor sur le joueur 
+    */
+
+    private : 
+        int valeur;
+
+    public : 
+        void init(int a){
+            valeur = a;
+        }
+
+        char afficher(){
+            char b = '+';
+            return b;
+        }
+
+        virtual int appliqueEffet(int points_de_vie_joueur){
+            points_de_vie_joueur += valeur;
+            return points_de_vie_joueur;
+        }
+
+};" 
+
+2. Est-ce que tu valides mon code ? "#include <iostream>
+
+class Monstre : public Case{
+
+    /* Classe permettant de définir le monstre qu'un joueur peut rencontrer
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur qui supprime des points de vie à un joueur
+        pv : int (private)
+        Permet de définir les points de vie du monstre (pour le combat)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur de l'attaque du monstre
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le monstre dans le labyrinthe (par +)
+
+        appliqueEffet(int points_de_vie_joueur) : int
+        Permet d'appliquer l'effet de l'attaque du monstre sur le joeur
+        Prends en paramètre les pv de l'aventurier
+
+        fuite() : void 
+        Permet de déterminer si le joueur veut fuir ou pas face au monstre
+
+        vaincu() : void
+        Permet de dire si le monstre est vaincu ou pas s'il y a combat (s'il fuit pas)
+    */
+
+    private : 
+        int valeur;
+        int pv;
+
+    public : 
+        void init(int a, int b){
+            valeur = a;
+            pv = b;
+        }
+
+        char afficher(){
+            char a = 'M';
+            return a;
+        }
+
+        virtual int appliqueEffet(int points_de_vie_joueur){ //en cas de coup par le monstre
+            points_de_vie_joueur -= valeur; 
+            return points_de_vie_joueur;
+        }
+
+        //je sais pas s'il faut le mettre dans cette classe mais voilà je le définis ici
+        //les noms des paramètres etc serot changés en fonction de ce que vous ferez
+        // adresse du joueur comme ça ça modifie directement sa position
+        void fuite(Aventurier& aventurier, int position_precedente_x, int position_precedente_y, bool est_fuite){
+
+            if (est_fuite == true) { 
+                aventurier.position_x = position_precedente_x;
+                aventurier.position_y = position_precedente_y;
+            }
+        }
+
+        //dialogue pour dire que le combat est fini, pour arrêter le combat on aura qu'à juste plus utiliser applique_effet...
+        void vaincu(int pv){
+
+            if (pv <= 0) {
+                std::cout << "le monstre a été vaincu" <<std::endl;
+            }
+        }
+
+
+};"
+
+3. Voici la classe case qui est une une classe abstraite : " // Classe abstraite de base 
+
+class Case { 
+    public:
+        virtual char afficher() = 0; 
+        virtual ~Case() = default;
+};
+
+" je peux pas ajouter des return dans cette classe si? 
+
+
+4. tu valides la classe piège? "class Piege : public Case {
+
+    /*
+    Classe permettant de définir une case piège dans le labyrinthe 
+
+    Paramètres : 
+        degat : int (private)
+        Permet de définir les dégats que subit un joueur par le piège
+
+    Méthode : 
+        init : void
+        Permet d'initialiser les valeurs
+
+        afficher() : char 
+        Permet d'afficher la chaine de caractere du piège dans le labyrinthe (avec T)
+
+        appliqueEffet(int points_de_vie_joueur) : int 
+        Prend en paramètre les pv de l'aventurier et lui applique des dégats
+        Renvoie les pv restants de l'aventurier
+        Permet d'appliquer l'effet du piège sur le joueur
+    
+    
+    */
+    private : 
+        int degats;
+
+    public:
+        char afficher(){
+            char a = 'T';
+            return a;
+        }
+
+        virtual int appliqueEffet(int points_de_vie_joueur){ //en cas de coup par le monstre
+            points_de_vie_joueur -= degats; 
+            return points_de_vie_joueur;
+        }
+};"
+
+4. salut chat, je travaille sur un projet avec mes binômes et j'ai cette erreur lors de la compilation (C++) : n file included from Donjon.cpp:2:
+In file included from ./Donjon.h:10:
+In file included from ./CaseFactory.h:1:
+./Case.h:28:25: warning: default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]
+   28 |             bool visite = false;
+      |                         ^
+./Case.h:34:27: warning: defaulted function definitions are a C++11 extension [-Wc++11-extensions]
+   34 |         virtual ~Case() = default;
+      |                           ^
+In file included from Donjon.cpp:2:
+./Donjon.h:43:28: error: a space is required between consecutive right angle brackets (use '> >')
+   43 |         vector<vector<Case*>> grille;
+      |                            ^~
+      |                            > >
+./Donjon.h:57:29: error: a space is required between consecutive right angle brackets (use '> >')
+   57 |         vector<pair<int, int>> trouverChemin(pair<int, int> depart, pair<int, int> arrivee);
+      |                             ^~
+      |                             > >
+./Donjon.h:58:29: error: a space is required between consecutive right angle brackets (use '> >')
+   58 |         vector<pair<int, int>> reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee);
+      |                             ^~
+      |                             > >
+./Donjon.h:58:78: error: a space is required between consecutive right angle brackets (use '> >')
+   58 |         vector<pair<int, int>> reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee);
+      |                                                                              ^~
+      |                                                                              > > 
+Donjon.cpp:38:51: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   38 |             grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
+      |                                                   ^
+Donjon.cpp:39:55: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   39 |             grille[nx1][ny1] = CaseFactory::creerCase(TypeCase::Passage);
+      |                                                       ^
+Donjon.cpp:40:53: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   40 |             grille[nx][ny] = CaseFactory::creerCase(TypeCase::Passage);
+      |                                                     ^
+Donjon.cpp:58:51: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   58 |             grille[i][j] = CaseFactory::creerCase(TypeCase::Mur); //CaseFactory?
+      |                                                   ^
+Donjon.cpp:64:43: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   64 |     grille[0][0] = CaseFactory::creerCase(TypeCase::Passage); //poserEntree(grille);
+      |                                           ^
+Donjon.cpp:65:59: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   65 |     grille[hauteur-1][largeur-1] = CaseFactory::creerCase(TypeCase::Passage); //poserSortie(grille);
+      |                                                           ^
+Donjon.cpp:75:59: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   75 |                     grille[i][j] = CaseFactory::creerCase(TypeCase::Tresor);
+      |                                                           ^
+Donjon.cpp:79:59: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   79 |                     grille[i][j] = CaseFactory::creerCase(TypeCase::Monstre);
+      |                                                           ^
+Donjon.cpp:83:59: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   83 |                     grille[i][j] = CaseFactory::creerCase(TypeCase::Piege);
+      |                                                           ^
+Donjon.cpp:91:21: error: a space is required between consecutive right angle brackets (use '> >')
+   91 | vector<pair<int, int>> Donjon::trouverChemin(pair<int, int> depart,  pair<int, int> arrivee){
+      |                     ^~
+      |                     > >
+Donjon.cpp:92:24: error: a space is required between consecutive right angle brackets (use '> >')
+   92 |     queue<pair<int, int>> file = {};
+      |                        ^~
+      |                        > >
+Donjon.cpp:92:27: error: non-aggregate type 'queue<pair<int, int> >' cannot be initialized with an initializer list
+   92 |     queue<pair<int, int>> file = {};
+      |                           ^      ~~
+Donjon.cpp:93:23: error: a space is required between consecutive right angle brackets (use '> >')
+   93 |     vector<vector<bool>> visite(h, vector<bool>(l));
+      |                       ^~
+      |                       > >
+Donjon.cpp:94:32: error: a space is required between consecutive right angle brackets (use '> >')
+   94 |     vector<vector<pair<int, int>>> parent(h, vector<pair<int, int>>(l));
+      |                                ^~
+      |                                > > 
+Donjon.cpp:94:66: error: a space is required between consecutive right angle brackets (use '> >')
+   94 |     vector<vector<pair<int, int>>> parent(h, vector<pair<int, int>>(l));
+      |                                                                  ^~
+      |                                                                  > >
+Donjon.cpp:99:28: error: expected expression
+   99 |             parent[i][j] = {-1, -1};
+      |                            ^
+Donjon.cpp:106:20: error: non-aggregate type 'pair<int, int>' cannot be initialized with an initializer list
+  106 |     pair<int, int> NORD = {-1, 0};
+      |                    ^      ~~~~~~~
+Donjon.cpp:107:20: error: non-aggregate type 'pair<int, int>' cannot be initialized with an initializer list
+  107 |     pair<int, int> SUD = {1, 0};
+      |                    ^     ~~~~~~
+Donjon.cpp:108:20: error: non-aggregate type 'pair<int, int>' cannot be initialized with an initializer list
+  108 |     pair<int, int> EST = {0, 1};
+      |                    ^     ~~~~~~
+Donjon.cpp:109:20: error: non-aggregate type 'pair<int, int>' cannot be initialized with an initializer list
+  109 |     pair<int, int> OUEST = {0, -1};
+      |                    ^       ~~~~~~~
+Donjon.cpp:110:25: error: a space is required between consecutive right angle brackets (use '> >')
+  110 |     vector<pair<int, int>> directions = {NORD, SUD, EST, OUEST};
+      |                         ^~
+      |                         > >
+Donjon.cpp:110:28: error: non-aggregate type 'vector<pair<int, int> >' cannot be initialized with an initializer list
+  110 |     vector<pair<int, int>> directions = {NORD, SUD, EST, OUEST};
+      |                            ^            ~~~~~~~~~~~~~~~~~~~~~~~
+Donjon.cpp:125:28: error: non-aggregate type 'pair<int, int>' cannot be initialized with an initializer list
+  125 |             pair<int, int> v = {nx, ny};
+      |                            ^   ~~~~~~~~
+Donjon.cpp:126:101: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+  126 |             if(nx>=0 && nx<h && ny>=0 && ny<l && visite[nx][ny] == false && grille[nx][ny]->type != TypeCase::Mur){
+      |                                                                                                     ^
+Donjon.cpp:133:12: warning: generalized initializer lists are a C++11 extension [-Wc++11-extensions]
+  133 |     return {};
+      |            ^~
+Donjon.cpp:133:12: error: non-aggregate type 'vector<pair<int, int> >' cannot be initialized with an initializer list
+  133 |     return {};
+      |            ^~
+fatal error: too many errors emitted, stopping now [-ferror-limit=]
+14 warnings and 20 errors generated.
+In file included from CaseFactory.cpp:1:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:4:
+./CaseFactory.h:8:6: warning: scoped enumerations are a C++11 extension [-Wc++11-extensions]
+    8 | enum class TypeCase{
+      |      ^
+In file included from CaseFactory.cpp:1:
+In file included from ./CaseFactory.h:1:
+./Case.h:28:25: warning: default member initializer for non-static data member is a C++11 extension [-Wc++11-extensions]
+   28 |             bool visite = false;
+      |                         ^
+./Case.h:34:27: warning: defaulted function definitions are a C++11 extension [-Wc++11-extensions]
+   34 |         virtual ~Case() = default;
+      |                           ^
+In file included from CaseFactory.cpp:4:
+./Mur.h:19:20: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   19 |             type = TypeCase::Mur;
+      |                    ^
+In file included from CaseFactory.cpp:5:
+./Passage.h:19:20: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   19 |             type = TypeCase::Passage;
+      |                    ^
+In file included from CaseFactory.cpp:6:
+./Tresor.h:29:20: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   29 |             type = TypeCase::Tresor;
+      |                    ^
+In file included from CaseFactory.cpp:7:
+In file included from ./Monstre.h:5:
+In file included from ./Aventurier.h:2:
+./Donjon.h:43:28: error: a space is required between consecutive right angle brackets (use '> >')
+   43 |         vector<vector<Case*>> grille;
+      |                            ^~
+      |                            > >
+./Donjon.h:57:29: error: a space is required between consecutive right angle brackets (use '> >')
+   57 |         vector<pair<int, int>> trouverChemin(pair<int, int> depart, pair<int, int> arrivee);
+      |                             ^~
+      |                             > >
+./Donjon.h:58:29: error: a space is required between consecutive right angle brackets (use '> >')
+   58 |         vector<pair<int, int>> reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee);
+      |                             ^~
+      |                             > >
+./Donjon.h:58:78: error: a space is required between consecutive right angle brackets (use '> >')
+   58 |         vector<pair<int, int>> reconstruireChemin(vector<vector<pair<int, int>>> parent, pair<int, int> depart, pair<int, int> arrivee);
+      |                                                                              ^~
+      |                                                                              > > 
+In file included from CaseFactory.cpp:7:
+In file included from ./Monstre.h:5:
+./Aventurier.h:21:25: warning: defaulted function definitions are a C++11 extension [-Wc++11-extensions]
+   21 |         ~Aventurier() = default;
+      |                         ^
+In file included from CaseFactory.cpp:7:
+./Monstre.h:42:20: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   42 |             type = TypeCase::Monstre;
+      |                    ^
+In file included from CaseFactory.cpp:8:
+./Piege.h:33:20: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   33 |             type = TypeCase::Piege;
+      |                    ^
+CaseFactory.cpp:12:17: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   12 |     if (type == TypeCase::Mur) {
+      |                 ^
+CaseFactory.cpp:15:17: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   15 |     if (type == TypeCase::Passage) {
+      |                 ^
+CaseFactory.cpp:18:17: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   18 |     if (type == TypeCase::Monstre) {
+      |                 ^
+CaseFactory.cpp:21:17: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   21 |     if (type == TypeCase::Piege) {
+      |                 ^
+CaseFactory.cpp:24:17: warning: use of enumeration in a nested name specifier is a C++11 extension [-Wc++11-extensions]
+   24 |     if (type == TypeCase::Tresor) {
+      |                 ^
+14 warnings and 4 errors generated. ; pourtant mes coéquipiers n'ont pas ça et carrément ça compile
+
+5. j'ai apporté ces modifications à mes classes héritant de la classe case, afin de permettre d'appliquer les effets des cases au joueur directement,  les voici : case : #ifndef CASE_H
+#define CASE_H
+
+#include "CaseFactory.h"
+
+
+class Case {
+    /*
+    Classe permettant de définir chaque case de la grille.
+
+    Paramètres :
+        - visite : bool (private)
+            Désigne si la case a été visité ou pas.
+
+    Méthodes :
+        - afficher() : char
+            Renvoie le symbole ASCII de la case.
+        - appliqueEffet(int points_de_vie_joueur) : int
+            Applique l'effet spécifique de la case sur l'aventurier.
+        - ~Case()
+            Destructeur de la classe Case.
+        - getVisite() : bool
+            Getter du paramètre visite. Renvoie l'état de la case (visité ou pas).
+        - setVisite : void
+            Setter du paramètre visite. Modifie l'état de la case.
+    */
+    private:
+            bool visite = false;
+            
+    public:
+        TypeCase type; 
+        virtual char afficher() = 0; 
+        virtual void appliqueEffet(Aventurier& aventurier);
+        virtual ~Case() = default;
+        bool getVisite(){
+            return visite;
+        };
+        void setVisite(bool visit){
+            visite = visit;
+        };
+};
+
+#endif ; monstre : #ifndef MONSTRE_H
+#define MONSTRE_H
+
+#include <iostream>
+#include "Aventurier.h"
+#include "Case.h"
+
+class Monstre : public Case{
+
+    /* Classe permettant de définir le monstre qu'un joueur peut rencontrer
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur qui supprime des points de vie à un joueur
+        pv : int (private)
+        Permet de définir les points de vie du monstre (pour le combat)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur de l'attaque du monstre
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le monstre dans le labyrinthe (par +)
+
+        appliqueEffet(Aventurier& aventurier) : void
+        Permet d'appliquer l'effet de l'attaque du monstre sur le joeur
+        Prends en paramètre l'aventurier lui-même
+
+        fuite() : void 
+        Permet de déterminer si le joueur veut fuir ou pas face au monstre
+
+        vaincu() : void
+        Permet de dire si le monstre est vaincu ou pas s'il y a combat (s'il fuit pas)
+    */
+
+    private : 
+        int valeur;
+        int pv;
+
+    public : 
+        Monstre(){
+            type = TypeCase::Monstre;
+        };
+
+        void init(int a, int b){
+            valeur = a;
+            pv = b;
+        }
+
+        char afficher(){
+            char a = 'M';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
+            aventurier.pv -= valeur; 
+            std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monde" << std::endl;
+        }
+
+        //je sais pas s'il faut le mettre dans cette classe mais voilà je le définis ici
+        //les noms des paramètres etc serot changés en fonction de ce que vous ferez
+        // adresse du joueur comme ça ça modifie directement sa position
+        void fuite(Aventurier& aventurier, int position_precedente_x, int position_precedente_y, bool est_fuite){
+
+            if (est_fuite == true) { 
+                aventurier.x = position_precedente_x;
+                aventurier.y = position_precedente_y;
+            }
+        }
+
+        //dialogue pour dire que le combat est fini, pour arrêter le combat on aura qu'à juste plus utiliser applique_effet...
+        void vaincu(){
+
+            if (pv <= 0) {
+                std::cout << "le monstre a été vaincu" <<std::endl;
+            }
+        }
+
+
+};
+
+#endif ; mur : #ifndef MUR_H
+#define MUR_H
+#include "Case.h"
+
+class Mur : public Case {
+
+    /* Classe permettant de définir un mur
+
+    Méthode : 
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le mur dans le labyrinthe (par #)
+
+        appliqueEffet() : void
+        Rien ne se passe, mais il faut quand même définir cette méthode pour que le code compile, vu que c'est une méthode virtuelle pure dans la classe Case
+    */
+
+    public:
+        Mur() {
+            type = TypeCase::Mur;
+        }
+        
+        char afficher(){
+            char a = '#';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ 
+        }
+};
+
+#endif ; passage  : #ifndef PASSAGE_H
+#define PASSAGE_H
+#include "Case.h"
+
+class Passage : public Case {
+
+    /* Classe permettant de définir un mur
+
+    Méthode : 
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le passage dans le labyrinthe (par  )
+
+        appliqueEffet() : void
+        RIen ne se passe, mais il faut quand même définir cette méthode pour que le code compile, vu que c'est une méthode virtuelle dans la classe Case
+    */
+
+    public:
+        Passage(){
+            type = TypeCase::Passage;
+        }
+        
+        char afficher(){
+            char a = ' ';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ 
+        }
+
+};
+
+#endif ; piege : #ifndef PIEGE_H
+#define PIEGE_H
+#include "Case.h"
+
+class Piege : public Case {
+
+    /*
+    Classe permettant de définir une case piège dans le labyrinthe 
+
+    Paramètres : 
+        degat : int (private)
+        Permet de définir les dégats que subit un joueur par le piège
+
+    Méthode : 
+        init : void
+        Permet d'initialiser les valeurs
+
+        afficher() : char 
+        Permet d'afficher la chaine de caractere du piège dans le labyrinthe (avec T)
+
+        appliqueEffet(Aventurier& aventurier) : void
+        Prend en paramètre le joueurde l'aventurier et lui applique des dégats
+        Permet d'appliquer l'effet du piège sur le joueur
+    
+    
+    */
+    private : 
+        int degats;
+
+    public:
+        Piege(){
+            type = TypeCase::Piege;
+        }
+
+        void init(int a){
+            degats = a; 
+        }
+
+        char afficher(){
+            char a = 'T';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
+            aventurier.pv -= degats; 
+            std::cout << "Vous venez de subir " << degats << "de la part du piège" << std::endl;
+        }
+};
+
+#endif ; tresor : #ifndef TRESOR_H
+#define TRESOR_H
+#include "Case.h"
+
+class Tresor : public Case {
+
+    /* Classe permettant de définir le trésor qu'un joueur peut avoir
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 trésors)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur du trésor
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le trésor dans le labyrinthe (par +)
+
+        appliqueEffet() : void
+        Permet d'appliquer l'effet du trésor sur le joueur directement
+    */
+
+    private : 
+        int valeur;
+
+    public : 
+        Tresor(){
+            type = TypeCase::Tresor;
+        };
+
+        void init(int a){
+            valeur = a;
+        }
+
+        char afficher(){
+            char b = '+';
+            return b;
+        }
+
+        virtual void appliqueEffet(venturier& aventurier){ //permettant d'appliquer tous les effets du trésor au joueur directement
+            aventurier.pv += valeur;
+            aventurier.inventaire += 1;
+            std::cout << "Un trésor a été trouvé , vous gagnez " << valeur << "pv et un trésor" << std::endl;
+        }
+
+};
+
+#endif; est-ce que t'es d'accord avec mon code? ou est-ce que j'ai fait des fautes de raisonnement
+
+6. Okk merci, mais tu vois dans case j'ai bien mis afficher et appliqueeffet mais pour ce qui est des autres fonctions de monstre.h 
+par exemple, est-ce que ça va poser un pb si jveux les utiliser dans ma boucle de jeu? alors qu'elles ne sont pas écrites dans case
+
+7. ok du coup j'ai Changé toute ma classe monstre afin que tout se passe dans appliqueeffet, à présent j'ai ce code là : #ifndef MONSTRE_H
+#define MONSTRE_H
+
+#include <iostream>
+#include "Aventurier.h"
+#include "Case.h"
+#include <random>
+
+class Monstre : public Case{
+
+    /* Classe permettant de définir le monstre qu'un joueur peut rencontrer
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur qui supprime des points de vie à un joueur
+        pv : int (private)
+        Permet de définir les points de vie du monstre (pour le combat)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur de l'attaque du monstre
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le monstre dans le labyrinthe (par +)
+
+        appliqueEffet(Aventurier& aventurier) : void
+        Permet d'appliquer l'effet de l'attaque du monstre sur le joeur
+        Prends en paramètre l'aventurier lui-même
+
+        fuite() : void 
+        Permet de déterminer si le joueur veut fuir ou pas face au monstre
+
+        vaincu() : void
+        Permet de dire si le monstre est vaincu ou pas s'il y a combat (s'il fuit pas)
+    */
+
+    private : 
+        int valeur;
+        int pv;
+        bool est_fuite = false; 
+        bool est_vaincu = false;
+        
+        //proba random pour l'attaque du monstre, puis pour l'attaque du joueur
+        std::default_random_engine de;
+        std::uniform_real_distribution<double> distrib(0.0,1.0);
+        double proba_attaque_monstre = distrib(de);
+
+        std::default_random_engine de2;
+        std::uniform_real_distribution<double> distrib2(0.0,1.0);
+        double proba_attaque_joueur = distrib2(de);
+
+        //fin aléatoire; source: https://blog.alphorm.com/les-fonctions-aleatoires-en-c-11
+
+
+        // adresse du joueur comme ça ça modifie directement sa position
+        // en privé car je vais me servir des deux méthodes dans appliqueEffet sinon ça va être compliqué d'utiliser ces fonctions étant donnés qu'elles sont pas définies dans case
+        void fuite(Aventurier& aventurier){
+
+            if (est_fuite == true) { 
+                aventurier.x = aventurier.x_precedent;
+                aventurier.y = aventurier.y_precedent;
+            }
+        }
+
+        //dialogue pour dire que le combat est fini, pour arrêter le combat on aura qu'à juste plus utiliser applique_effet...
+        void vaincu(){
+
+            if (pv <= 0) {
+                std::cout << "le monstre a été vaincu" <<std::endl;
+            }
+        }
+
+
+
+    public : 
+        Monstre(){
+            type = TypeCase::Monstre;
+        };
+
+        void init(int a, int b){
+            valeur = a;
+            pv = b;
+        }
+
+        char afficher(){
+            char a = 'M';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
+
+            // on propose tout d'abord au joueur s'il veut fuir ou pas : 
+            std::cout << "Oh non ! Un monstre est apparu... Souhaitez-vous fuir ?! YES/NO" << std::endl;
+
+            //lecture clavier décision jour : 
+            char decision; 
+            std::cin >> decision;
+
+            if (decision == "YES" || decision == "yes" || decision = "Yes" || decision == "Y" || decision == "y") {
+
+                est_fuite = true;
+                //le joueur retourne alors à la case précédente : 
+                this->fuite(aventurier); 
+            }
+
+            if (decision == "NO" || decision == "non" || decision == "No" || decision == "N" || decision == "n") {
+
+                std::cout << "Vous engagez le combat avec le monstre !" << std::endl;
+                est_fuite = false;
+
+                //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
+                if (proba_attaque_monstre <= 0.7) {
+                    aventurier.pv -= valeur; 
+                    std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monde" << std::endl;
+                    est_vaincu = false;
+                }
+
+                else {
+                    std::cout << "flop du monstre, aucun dégât subi" << std::endl;
+                    est_vaincu = false;
+                }
+
+                // le jour attaque le monstre avec une probabilité de 30% : 
+                if (proba_attaque_jour <= 0.3){
+                    pv -= 50; 
+                    std::cout << "un coup critique a été donné au monstre" << std::endl;
+
+                    if (pv<=0){
+                        est_vaincu = true; 
+                        this->vaincu();
+                        
+                    }
+                }
+
+                }
+
+
+            }
+            
+
+};
+
+#endif est-il juste? 
+
+8. du coup là c'est mieux non ? #ifndef MONSTRE_H
+#define MONSTRE_H
+
+#include <iostream>
+#include "Aventurier.h"
+#include "Case.h"
+#include <random>
+
+class Monstre : public Case{
+
+    /* Classe permettant de définir le monstre qu'un joueur peut rencontrer
+
+    Paramètres : 
+        valeur : int (private)
+        Permet de définir une valeur qui supprime des points de vie à un joueur
+        pv : int (private)
+        Permet de définir les points de vie du monstre (pour le combat)
+
+    Méthode : 
+        init : void 
+        Permet d'initiliaser la valeur de l'attaque du monstre
+
+        afficher() : char
+        Permet d'afficher la chaîne de caractère représentant le monstre dans le labyrinthe (par +)
+
+        appliqueEffet(Aventurier& aventurier) : void
+        Permet d'appliquer l'effet de l'attaque du monstre sur le joeur
+        Prends en paramètre l'aventurier lui-même
+
+        fuite() : void 
+        Permet de déterminer si le joueur veut fuir ou pas face au monstre
+
+        vaincu() : void
+        Permet de dire si le monstre est vaincu ou pas s'il y a combat (s'il fuit pas)
+    */
+
+    private : 
+        int valeur;
+        int pv;
+        bool est_fuite = false; 
+        bool est_vaincu = false;
+        
+        //proba random pour l'attaque du monstre, puis pour l'attaque du joueur
+        std::default_random_engine de;
+        std::uniform_real_distribution<double> distrib(0.0,1.0);
+        //double proba_attaque_monstre = distrib(de); ;; on les met dans appliqueEffet sinon ça sera la même proba à chaque fois
+
+        std::default_random_engine de2;
+        std::uniform_real_distribution<double> distrib2(0.0,1.0);
+        //double proba_attaque_joueur = distrib2(de);
+
+        //fin aléatoire; source: https://blog.alphorm.com/les-fonctions-aleatoires-en-c-11
+
+
+        // adresse du joueur comme ça ça modifie directement sa position
+        // en privé car je vais me servir des deux méthodes dans appliqueEffet sinon ça va être compliqué d'utiliser ces fonctions étant donnés qu'elles sont pas définies dans case
+        void fuite(Aventurier& aventurier){
+
+            if (est_fuite == true) { 
+                aventurier.x = aventurier.x_precedent;
+                aventurier.y = aventurier.y_precedent;
+            }
+        }
+
+        //dialogue pour dire que le combat est fini, pour arrêter le combat on aura qu'à juste plus utiliser applique_effet...
+        void vaincu(){
+
+            if (pv <= 0) {
+                std::cout << "le monstre a été vaincu" <<std::endl;
+            }
+        }
+
+
+
+    public : 
+        Monstre(){
+            type = TypeCase::Monstre;
+        };
+
+        void init(int a, int b){
+            valeur = a;
+            pv = b;
+        }
+
+        char afficher(){
+            char a = 'M';
+            return a;
+        }
+
+        virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
+
+            //initialisation des paramètres aléatoires : 
+            double proba_attaque_monstre = distrib(de);
+            double proba_attaque_joueur = distrib2(de);
+
+            // on propose tout d'abord au joueur s'il veut fuir ou pas : 
+            std::cout << "Oh non ! Un monstre est apparu... Souhaitez-vous fuir ?! Y/N" << std::endl;
+
+            //lecture clavier décision jour : 
+            char decision; 
+            std::cin >> decision;
+
+            if (decision == "Y" || decision == "y") {
+
+                est_fuite = true;
+                //le joueur retourne alors à la case précédente : 
+                this->fuite(aventurier); 
+            }
+
+            if (decision == "N" || decision == "n") {
+
+                std::cout << "Vous engagez le combat avec le monstre !" << std::endl;
+                est_fuite = false;
+
+                //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
+                if (proba_attaque_monstre <= 0.7) {
+                    aventurier.pv -= valeur; 
+                    std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monde" << std::endl;
+                    est_vaincu = false;
+                }
+
+                else {
+                    std::cout << "flop du monstre, aucun dégât subi" << std::endl;
+                    est_vaincu = false;
+                }
+
+                // le joueur attaque le monstre avec une probabilité de 30% : 
+                if (proba_attaque_joueur <= 0.3){
+                    pv -= 50; 
+                    std::cout << "un coup critique a été donné au monstre" << std::endl;
+
+                    if (pv<=0){
+                        est_vaincu = true; 
+                        this->vaincu();
+
+                    }
+                }
+                else {
+                    std::cout << "Le joueur est fatigué... il a raté son attaque" << std:endl;
+                    est_vaincu = false;
+                }
+            }
+};
+
+#endif
+
+9. c'est pas correct là si? #include <iostream>
+#include "Donjon.h"
+using namespace std;
+
+#ifndef AVENTURIER_H
+#define AVENTURIER_H
+
+class Aventurier {
+    public:
+        int pv;
+        int x, y;
+        int inventaire;
+
+        //permet au joueur de fuir
+        int x_precedent, y_precedent;
+    
+    public:
+        Aventurier(){
+           pv = 100;
+           x = 0;
+           y = 0;
+           inventaire = 0; 
+
+           //ajout des positions précédentes du joueur pour permettre au joueur de fuir face au monstre
+           x_precedent = 0;
+           y_precedent = 0;
+        };
+        ~Aventurier() = default;
+
+        char constafficher(){
+            char a = '@';
+            return a;
+        };
+
+        void deplacer(int nx, int ny){
+            // si (x+nx,y+ny) dans grille est différent de MUR => x = x + nx et y = y + ny
+            x_precedent = x;
+            y_precedent = y;
+            x = x + nx;
+            y = y + ny;
+        };
+
+        bool estVivant(){
+            if (pv > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        void afficherStatut(){
+            cout << "Position : ( " << x << " , " << y << " )" << endl;
+            cout << "Sante : " << pv << "/100" << endl;
+            cout << "Inventaire : " << inventaire << " tresors" << endl;
+        };
+
+        void boucleDeJeu(Donjon& d){
+            while (estVivant() == true){
+                // AFFICHAGE DU DONJON ET JOUEUR
+                for(int i = 0; i<d.h; i++){
+                    for(int j = 0; j<d.l; j++){
+                        if (i == x && j == y) {
+                            cout << constafficher();
+                        }
+                        else {
+                            cout << d.grille[i][j] -> afficher(); 
+                        }
+                    };
+                cout << endl;
+                };
+                cout << "" << endl;
+                afficherStatut();
+
+                // LECTURE TOUCHE
+                char direction;
+                cin >> direction;
+                if (direction == 'z'){
+                   // deplacer(-1, 0);
+
+                   //petit changement pour se déplacer uniquement si y a pas un mur sur le chemin
+                   nx = -1;
+                   ny = 0;
+                }
+                else if (direction == 's') {
+                  //  deplacer(1, 0);
+                    nx = 1;
+                    ny = 0;
+                }
+                else if (direction == 'q') {
+                   // deplacer(0, -1);
+                      nx = 0; 
+                      ny = -1;
+                }
+                else if (direction == 'd') {
+                  //  deplacer(0, 1);
+                      nx = 0; 
+                      ny = -1
+                }
+            }
+
+            //on vérifie qu'on est pas face à un mur : 
+            if (d.grille[x][y] -> type != TypeCase::Mur) {
+                deplacer(nx, ny);
+                d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+
+            }
+
+        };
+
+};
+
+#endif
+
+11. du coup là sauf segmentions fault c'est bon nan? #include <iostream>
+#include "Donjon.h"
+using namespace std;
+
+#ifndef AVENTURIER_H
+#define AVENTURIER_H
+
+class Aventurier {
+    public:
+        int pv;
+        int x, y;
+        int inventaire;
+
+        //permet au joueur de fuir
+        int x_precedent, y_precedent;
+        
+        //stocker le pas selon x et le pas selon y 
+        int nx, ny;
+    
+    public:
+        Aventurier(){
+           pv = 100;
+           x = 0;
+           y = 0;
+           inventaire = 0; 
+
+           //ajout des positions précédentes du joueur pour permettre au joueur de fuir face au monstre
+           x_precedent = 0;
+           y_precedent = 0;
+           nx = 0; 
+           ny = 0;
+        };
+
+        ~Aventurier() = default;
+
+        char constafficher(){
+            char a = '@';
+            return a;
+        };
+
+        void deplacer(int nx, int ny){
+            // si (x+nx,y+ny) dans grille est différent de MUR => x = x + nx et y = y + ny
+            x_precedent = x;
+            y_precedent = y;
+            x = x + nx;
+            y = y + ny; 
+        };
+
+        bool estVivant(){
+            if (pv > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        };
+
+        void afficherStatut(){
+            cout << "Position : ( " << x << " , " << y << " )" << endl;
+            cout << "Sante : " << pv << "/100" << endl;
+            cout << "Inventaire : " << inventaire << " tresors" << endl;
+        };
+
+        void boucleDeJeu(Donjon& d){
+            while (estVivant() == true){
+                // AFFICHAGE DU DONJON ET JOUEUR
+                for(int i = 0; i<d.h; i++){
+                    for(int j = 0; j<d.l; j++){
+                        if (i == x && j == y) {
+                            cout << constafficher();
+                        }
+                        else {
+                            cout << d.grille[i][j] -> afficher(); 
+                        }
+                    };
+                cout << endl;
+                };
+                cout << "" << endl;
+                afficherStatut();
+
+                // LECTURE TOUCHE
+                char direction;
+                cin >> direction;
+                if (direction == 'z'){
+                   // deplacer(-1, 0);
+
+                   //petit changement pour se déplacer uniquement si y a pas un mur sur le chemin
+                   nx = -1;
+                   ny = 0;
+                }
+                else if (direction == 's') {
+                  //  deplacer(1, 0);
+                    nx = 1;
+                    ny = 0;
+                }
+                else if (direction == 'q') {
+                   // deplacer(0, -1);
+                      nx = 0; 
+                      ny = -1;
+                }
+                else if (direction == 'd') {
+                  //  deplacer(0, 1);
+                      nx = 0; 
+                      ny = -1;
+                }
+                //on vérifie qu'on fonce pas sur un mur
+            if (d.grille[x+nx][y+ny] -> type != TypeCase::Mur) {
+                deplacer(nx, ny);
+                d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+
+            }
+        }
+    };
+
+};
+
+#endif
+
+; et on est d'accord je peux me permettre d'avoir plusieurs variables nx et ny grâce à la surcharge en c++?
+
+12. bon j'ai plusieurs pb à la compilation, tu peux m'aider à débogguer stp : (base) soso@macbook-air-de-sofia Projet_C- % g++ -std=c++11 main.cpp Donjon.cpp CaseFactory.cpp -o projet
+In file included from main.cpp:2:
+In file included from ./Donjon.h:10:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:5:
+./Aventurier.h:64:26: error: unknown type name 'Donjon'
+   64 |         void boucleDeJeu(Donjon& d){
+      |                          ^
+1 error generated.
+In file included from Donjon.cpp:2:
+In file included from ./Donjon.h:10:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:5:
+./Aventurier.h:64:26: error: unknown type name 'Donjon'
+   64 |         void boucleDeJeu(Donjon& d){
+      |                          ^
+1 error generated.
+In file included from CaseFactory.cpp:1:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:5:
+./Aventurier.h:78:52: error: member access into incomplete type 'Case'
+   78 |                             cout << d.grille[i][j] -> afficher(); 
+      |                                                    ^
+./CaseFactory.h:6:7: note: forward declaration of 'Case'
+    6 | class Case;
+      |       ^
+In file included from CaseFactory.cpp:1:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:5:
+./Aventurier.h:112:44: error: member access into incomplete type 'Case'
+  112 |             if (d.grille[x+pas_x][y+pas_y] -> type != TypeCase::Mur) {
+      |                                            ^
+./CaseFactory.h:6:7: note: forward declaration of 'Case'
+    6 | class Case;
+      |       ^
+In file included from CaseFactory.cpp:1:
+In file included from ./CaseFactory.h:1:
+In file included from ./Case.h:5:
+./Aventurier.h:114:32: error: member access into incomplete type 'Case'
+  114 |                 d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+      |                                ^
+./CaseFactory.h:6:7: note: forward declaration of 'Case'
+    6 | class Case;
+      |       ^
+In file included from CaseFactory.cpp:7:
+./Monstre.h:45:56: error: expected parameter declarator
+   45 |         std::uniform_real_distribution<double> distrib(0.0,1.0);
+      |                                                        ^
+./Monstre.h:45:56: error: expected ')'
+./Monstre.h:45:55: note: to match this '('
+   45 |         std::uniform_real_distribution<double> distrib(0.0,1.0);
+      |                                                       ^
+./Monstre.h:49:57: error: expected parameter declarator
+   49 |         std::uniform_real_distribution<double> distrib2(0.0,1.0);
+      |                                                         ^
+./Monstre.h:49:57: error: expected ')'
+./Monstre.h:49:56: note: to match this '('
+   49 |         std::uniform_real_distribution<double> distrib2(0.0,1.0);
+      |                                                        ^
+./Monstre.h:91:52: error: too many arguments to function call, expected 0, have 1
+   91 |             double proba_attaque_monstre = distrib(de);
+      |                                            ~~~~~~~ ^~
+./Monstre.h:45:48: note: 'distrib' declared here
+   45 |         std::uniform_real_distribution<double> distrib(0.0,1.0);
+      |                                                ^
+./Monstre.h:91:20: error: no viable conversion from 'std::uniform_real_distribution<double>' to 'double'
+   91 |             double proba_attaque_monstre = distrib(de);
+      |                    ^                       ~~~~~~~~~~~
+./Monstre.h:92:52: error: too many arguments to function call, expected 0, have 1
+   92 |             double proba_attaque_joueur = distrib2(de);
+      |                                           ~~~~~~~~ ^~
+./Monstre.h:49:48: note: 'distrib2' declared here
+   49 |         std::uniform_real_distribution<double> distrib2(0.0,1.0);
+      |                                                ^
+./Monstre.h:92:20: error: no viable conversion from 'std::uniform_real_distribution<double>' to 'double'
+   92 |             double proba_attaque_joueur = distrib2(de);
+      |                    ^                      ~~~~~~~~~~~~
+11 errors generated.
+
+13. donc si je résume, je retire include aventurier dans case, puis je définis classification aventurier pour éviter l'import circulaire, mais comme j'ai que aventurier.h ça va pas fonctionner pas vrai? Du coup, je dois forcément écrire aventurier.cpp car c'est lui qui va donner le contexte à ma classe aventurier anticipée dans case?
+
+14. ah ok mais je garde donjon.h parce qu'en fait le code s'est mis à ne pas compiler juste à cause de include aventurier dans case, donc au final ça marche bien comme ca, pas besoin en théorie de aventurier.cpp?
+
+

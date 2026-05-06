@@ -10,8 +10,8 @@ class Passage : public Case {
         afficher() : char
         Permet d'afficher la chaîne de caractère représentant le passage dans le labyrinthe (par  )
 
-        appliqueEffet() : int
-        Les PV du joueur restent inchangés, mais il faut quand même définir cette méthode pour que le code compile, vu que c'est une méthode virtuelle dans la classe Case
+        appliqueEffet() : void
+        RIen ne se passe, mais il faut quand même définir cette méthode pour que le code compile, vu que c'est une méthode virtuelle dans la classe Case
     */
 
     public:
@@ -24,8 +24,7 @@ class Passage : public Case {
             return a;
         }
 
-        virtual int appliqueEffet(int points_de_vie_joueur){ 
-            return points_de_vie_joueur;
+        virtual void appliqueEffet(Aventurier& aventurier){ 
         }
 
 };

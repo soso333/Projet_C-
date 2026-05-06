@@ -2,6 +2,11 @@
 #define CASE_H
 
 #include "CaseFactory.h"
+//#include "Aventurier.h", pb de dépendance circulaire
+
+//du coup on va déclarer la classe aventurier de manière anticipée pour régler le souci...
+class Aventurier; 
+// on donnera les détails de la classe aventurier dans le .h, mais pour que le code compile on doit quand meme déclarer la classe
 
 
 class Case {
@@ -30,7 +35,7 @@ class Case {
     public:
         TypeCase type; 
         virtual char afficher() = 0; 
-        virtual int appliqueEffet(int points_de_vie_joueur) = 0;
+        virtual void appliqueEffet(Aventurier& aventurier) = 0;
         virtual ~Case() = default;
         bool getVisite(){
             return visite;

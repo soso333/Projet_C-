@@ -1,6 +1,7 @@
 #ifndef TRESOR_H
 #define TRESOR_H
 #include "Case.h"
+#include "Aventurier.h"
 
 class Tresor : public Case {
 
@@ -17,8 +18,8 @@ class Tresor : public Case {
         afficher() : char
         Permet d'afficher la chaîne de caractère représentant le trésor dans le labyrinthe (par +)
 
-        appliqueEffet() : int
-        Permet d'appliquer l'effet du trésor sur le joueur 
+        appliqueEffet() : void
+        Permet d'appliquer l'effet du trésor sur le joueur directement
     */
 
     private : 
@@ -27,9 +28,10 @@ class Tresor : public Case {
     public : 
         Tresor(){
             type = TypeCase::Tresor;
+            init();
         };
 
-        void init(int a){
+        void init(int a = 10){
             valeur = a;
         }
 
@@ -38,9 +40,10 @@ class Tresor : public Case {
             return b;
         }
 
-        virtual int appliqueEffet(int points_de_vie_joueur){
-            points_de_vie_joueur += valeur;
-            return points_de_vie_joueur;
+        virtual void appliqueEffet(Aventurier& aventurier){ //permettant d'appliquer tous les effets du trésor au joueur directement
+            aventurier.pv += valeur;
+            aventurier.inventaire += 1;
+            std::cout << "Un trésor a été trouvé , vous gagnez " << valeur << "pv et un trésor" << std::endl;
         }
 
 };

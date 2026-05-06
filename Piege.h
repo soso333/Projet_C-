@@ -1,6 +1,7 @@
 #ifndef PIEGE_H
 #define PIEGE_H
 #include "Case.h"
+#include "Aventurier.h"
 
 class Piege : public Case {
 
@@ -18,9 +19,8 @@ class Piege : public Case {
         afficher() : char 
         Permet d'afficher la chaine de caractere du piège dans le labyrinthe (avec T)
 
-        appliqueEffet(int points_de_vie_joueur) : int 
-        Prend en paramètre les pv de l'aventurier et lui applique des dégats
-        Renvoie les pv restants de l'aventurier
+        appliqueEffet(Aventurier& aventurier) : void
+        Prend en paramètre le joueurde l'aventurier et lui applique des dégats
         Permet d'appliquer l'effet du piège sur le joueur
     
     
@@ -31,9 +31,10 @@ class Piege : public Case {
     public:
         Piege(){
             type = TypeCase::Piege;
+            init();
         }
 
-        void init(int a){
+        void init(int a = 25){
             degats = a; 
         }
 
@@ -42,9 +43,9 @@ class Piege : public Case {
             return a;
         }
 
-        virtual int appliqueEffet(int points_de_vie_joueur){ //en cas de coup par le monstre
-            points_de_vie_joueur -= degats; 
-            return points_de_vie_joueur;
+        virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
+            aventurier.pv -= degats; 
+            std::cout << "Vous venez de subir " << degats << "de la part du piège" << std::endl;
         }
 };
 
