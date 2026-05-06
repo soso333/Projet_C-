@@ -62,6 +62,8 @@ class Aventurier {
         };
 
         void boucleDeJeu(Donjon& d){
+            int nx=0;
+            int ny=0;
             while (estVivant() == true){
 
                 //réinitialisation des pas du joueur à chaque itération : 
@@ -82,6 +84,12 @@ class Aventurier {
                 };
                 cout << "" << endl;
                 afficherStatut();
+
+                // AFFICHAGE VICTOIRE
+                if (nx == d.h-1 && ny == d.l-1){
+                    cout << "FELICITATIONS !! Vous avez gagné la partie !!" << endl;
+                    return;
+                }
 
                 // LECTURE TOUCHE
                 char direction;
@@ -108,16 +116,22 @@ class Aventurier {
                       pas_x = 0; 
                       pas_y = 1;
                 }
+                
+                nx = x + pas_x;
+                ny = y + pas_y;
                 //on vérifie qu'on fonce pas sur un mur
-            if (d.grille[x+pas_x][y+pas_y] -> type != TypeCase::Mur) {
-                deplacer(pas_x, pas_y);
-                d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+                if (nx>=0 && nx<d.h && ny>=0 && ny<d.l && d.grille[x+pas_x][y+pas_y] -> type != TypeCase::Mur) {
+                    deplacer(pas_x, pas_y);
+                    d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+                }
+                /*else {
+                    cout << "Tu es face à un mur l'équipe" << endl;
+                }*/
+
+                
+            
             }
-            else {
-                cout << "Ty es face à un mur l'équipe" << endl;
-            }
-        }
-    };
+        };
 
 };
 
