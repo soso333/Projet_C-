@@ -123,6 +123,10 @@ class Aventurier {
                 if (nx>=0 && nx<d.h && ny>=0 && ny<d.l && d.grille[x+pas_x][y+pas_y] -> type != TypeCase::Mur) {
                     deplacer(pas_x, pas_y);
                     d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
+
+                    if (d.grille[nx][ny] -> type == TypeCase::Tresor){
+                        d.grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
+                    }
                 }
                 /*else {
                     cout << "Tu es face à un mur l'équipe" << endl;
@@ -131,9 +135,15 @@ class Aventurier {
                 
             
             }
+
+            // FIN DE PARTIE
+            cout << "GAME OVER :(" << endl;
+            return;
+
         };
 
 };
 
 #endif
+
 

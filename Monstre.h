@@ -107,7 +107,8 @@ class Monstre : public Case{
                 this->fuite(aventurier); 
             }
 
-            if (decision == 'N' || decision == 'n') {
+            //if (decision == 'N' || decision == 'n') {
+            else {
 
                 std::cout << "Vous engagez le combat avec le monstre !" << std::endl;
                 est_fuite = false;
