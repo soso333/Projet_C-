@@ -43,7 +43,7 @@ class Aventurier {
             Définit les différentes étapes du jeu et permet de gérer la partie.
         */
 
-    public:
+    private:
         // etat du joueur
         int pv;
         int x, y;
@@ -71,6 +71,47 @@ class Aventurier {
         };
 
         ~Aventurier() = default;
+
+        int getPV() {
+            return pv;
+        }
+
+        void setPV(int vie){
+            pv = vie;
+        }
+
+        int getInventaire(){
+            return inventaire;
+        }
+
+        void setInventaire(int inv){
+            inventaire = inv;
+        }
+        
+        int getX(){
+            return x;
+        }
+
+        void setX(int posx){
+            x = posx;
+        }
+
+        int getY(){
+            return y;
+        }
+
+        void setY(int posy){
+            y = posy;
+        }
+
+        int getXprec(){
+            return x_precedent;
+        }
+
+        int getYprec(){
+            return y_precedent;
+        }
+
 
         char constafficher(){
             char a = '@';

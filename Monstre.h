@@ -58,8 +58,8 @@ class Monstre : public Case{
         void fuite(Aventurier& aventurier){
 
             if (est_fuite == true) { 
-                aventurier.x = aventurier.x_precedent;
-                aventurier.y = aventurier.y_precedent;
+                aventurier.setX(aventurier.getXprec());
+                aventurier.setY(aventurier.getYprec());
             }
         }
 
@@ -115,7 +115,7 @@ class Monstre : public Case{
 
                 //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
                 if (proba_attaque_monstre <= 0.7) {
-                    aventurier.pv -= valeur; 
+                    aventurier.setPV(aventurier.getPV() - valeur); 
                     std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monstre" << std::endl;
                     est_vaincu = false;
                 }

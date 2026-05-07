@@ -1,0 +1,22 @@
+Journal prompt Morgane :
+
+comment relier plusieurs fichiers sous C++ ? avec les .h et .cpp ?
+
+Est-ce obligatoire de développer les fonctions dans un fichier source ou pour une petite classe on peut n'avoir qu'un fichier en .h ?
+
+qu'est-ce que cela signifie ? undefined reference to Donjon::~Donjon()'
+
+error: ‘shuffle’ is not a member of ‘std’
+   24 |     std::shuffle(std::begin(indices), std::end(indices), g);
+
+qu'est-ce que ça veut dire ? Segmentation fault (core dumped)
+
+c'est le rappel genererLabyrinthe(nx, ny); qui pose problème
+
+quelles sont les différences entre ces fonctions en C++ ? vector, map, queue
+
+comment ajouter des valeurs en début de vecteur sous C++ ?
+
+existe-t-il une fontion C++ permettant d'obtenir la longueur d'un vector ?
+
+pour récupérer la valeur 3 de v pouvons nous mettre v[2] ?

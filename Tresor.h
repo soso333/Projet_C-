@@ -41,8 +41,8 @@ class Tresor : public Case {
         }
 
         virtual void appliqueEffet(Aventurier& aventurier){ //permettant d'appliquer tous les effets du trésor au joueur directement
-            aventurier.pv += valeur;
-            aventurier.inventaire += 1;
+            aventurier.setPV(aventurier.getPV() + valeur);
+            aventurier.setInventaire(aventurier.getInventaire() + 1);
             std::cout << "Un trésor a été trouvé , vous gagnez " << valeur << "pv et un trésor" << std::endl;
         }
 
