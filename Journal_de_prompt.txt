@@ -1,5 +1,46 @@
 Journal de prompt : 
 
+Uxue : 
+
+Gemini:
+
+1.Je ne sais pas comment corriger mon code. J'ai modifié la classe Case en ajoutant un bool pour les marquer comme visitées ou pas.
+2.Mon code est mieux maintenant ou pas? Oublie pas que je n'ai pas encore de CaseFactory, donc j'ai laissé Mur ou Passage ==> ne me parle pas Mur ou Passage.
+3.J'ai continué un peu avec le donjon. Je dois delete avant de créer les cases car ce sont des pointeurs ? 
+4.Pourquoi je peux pas faire directions[0][0];
+5.Dans les docstrings on doit mettre les getters et setters ou pas ?
+6.Au secours :( j'ai une erreur illisible de type:
+    Aventurier.h:185:42: note:   'Aventurier' is not derived from 'const std::piecewise_linear_distribution<_RealType>'                                                  
+
+    185 |                                 cout << *this; 
+
+        | 
+
+Morgane : 
+
+comment relier plusieurs fichiers sous C++ ? avec les .h et .cpp ?
+
+Est-ce obligatoire de développer les fonctions dans un fichier source ou pour une petite classe on peut n'avoir qu'un fichier en .h ?
+
+qu'est-ce que cela signifie ? undefined reference to Donjon::~Donjon()'
+
+error: ‘shuffle’ is not a member of ‘std’
+   24 |     std::shuffle(std::begin(indices), std::end(indices), g);
+
+qu'est-ce que ça veut dire ? Segmentation fault (core dumped)
+
+c'est le rappel genererLabyrinthe(nx, ny); qui pose problème
+
+quelles sont les différences entre ces fonctions en C++ ? vector, map, queue
+
+comment ajouter des valeurs en début de vecteur sous C++ ?
+
+existe-t-il une fontion C++ permettant d'obtenir la longueur d'un vector ?
+
+pour récupérer la valeur 3 de v pouvons nous mettre v[2] ?
+
+Sofia : 
+
 1. Est-ce que tu valides mon code ? Copier-coller code classe trésor
 
 2. Est-ce que tu valides mon code ? "#include <iostream> : Copier-Coller code classe Monstre

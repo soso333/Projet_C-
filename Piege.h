@@ -11,18 +11,15 @@ class Piege : public Case {
     Classe permettant de définir une case piège dans le labyrinthe 
 
     Paramètres : 
-        degat : int (private)
+        degats : int (private)
         Permet de définir les dégats que subit un joueur par le piège
 
     Méthode : 
-        init : void
-        Permet d'initialiser les valeurs
-
         afficher() : char 
         Permet d'afficher la chaine de caractere du piège dans le labyrinthe (avec T)
 
         appliqueEffet(Aventurier& aventurier) : void
-        Prend en paramètre le joueurde l'aventurier et lui applique des dégats
+        Prend en paramètre le joueur et lui applique des dégats
         Permet d'appliquer l'effet du piège sur le joueur
     
     
@@ -31,13 +28,10 @@ class Piege : public Case {
         int degats;
 
     public:
-        Piege(){
+        //constructeur
+        Piege(int a = 25){
             type = TypeCase::Piege;
-            init();
-        }
-
-        void init(int a = 25){
-            degats = a; 
+            degats = a;
         }
 
         char afficher()const override{

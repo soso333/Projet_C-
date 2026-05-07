@@ -11,12 +11,9 @@ class Tresor : public Case {
 
     Paramètres : 
         valeur : int (private)
-        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 trésors)
+        Permet de définir une valeur à une récompense perçue par un joueur (exemple : +10 pv))
 
     Méthode : 
-        init : void 
-        Permet d'initiliaser la valeur du trésor
-
         afficher() : char
         Permet d'afficher la chaîne de caractère représentant le trésor dans le labyrinthe (par +)
 
@@ -28,12 +25,9 @@ class Tresor : public Case {
         int valeur;
 
     public : 
-        Tresor(){
+        //constructeur
+        Tresor(int a = 10){
             type = TypeCase::Tresor;
-            init();
-        };
-
-        void init(int a = 10){
             valeur = a;
         }
 
@@ -47,9 +41,6 @@ class Tresor : public Case {
             aventurier.setInventaire(aventurier.getInventaire() + 1);
             std::cout << "Un trésor a été trouvé , vous gagnez " << valeur << "pv et un trésor" << std::endl;
         }
-
-      
-
 };
 
 #endif
