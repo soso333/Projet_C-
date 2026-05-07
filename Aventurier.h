@@ -41,6 +41,27 @@ class Aventurier {
             Permet l'affichage de l'état du joueur.
         - boucleDeJeu(Donjon& d) : void
             Définit les différentes étapes du jeu et permet de gérer la partie.
+
+        - getPV() : int
+            Obtenir les PV du joueur.
+        - setPV(int vie) : void
+            Modifier les PV du joueur.
+        - getInventaire() : int
+            Obtenir le nombre de trésors ramassés.
+        - setInventaire(int inv) : void
+            Modifier le nombre de trésors.
+        - getX() : int
+            Obtenir la position x du joueur.
+        - setX(int posx) : void
+            Modifier la position x du joueur.
+        - getY() : int
+            Obtenir la position y du joueur.
+        - setY(int posy) : void
+            Modifier la position y du joueur.
+        - getXprec() : int
+            Obtenir la position x précédente à t-1 du joueur.
+        - getYprec() : int
+            Obtenir la position y précédente à t-1 du joueur.
         */
 
     private:
