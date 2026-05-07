@@ -41,7 +41,7 @@ class Piege : public Case {
 
         virtual void appliqueEffet(Aventurier& aventurier){ //en cas de coup par le monstre
             aventurier.setPV(max(0, aventurier.getPV() - degats)); 
-            std::cout << "Vous venez de subir " << degats << "de la part du piège" << std::endl;
+            std::cout << "Vous venez de subir " << degats << "pv de degat de la part du piège" << std::endl;
         }
 
    

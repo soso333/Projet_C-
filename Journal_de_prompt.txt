@@ -1,8 +1,6 @@
 Journal de prompt : 
 
-Uxue : 
-
-Gemini:
+Uxue : Gemini
 
 1.Je ne sais pas comment corriger mon code. J'ai modifié la classe Case en ajoutant un bool pour les marquer comme visitées ou pas.
 2.Mon code est mieux maintenant ou pas? Oublie pas que je n'ai pas encore de CaseFactory, donc j'ai laissé Mur ou Passage ==> ne me parle pas Mur ou Passage.

@@ -67,7 +67,7 @@ class Monstre : public Case{
         void vaincu(){
 
             if (pv <= 0) {
-                std::cout << "Le monstre a enfin été vaincu, FÉLICITATIONS" <<std::endl;
+                std::cout << "Le monstre a enfin ete vaincu, FELICITATIONS" <<std::endl;
             }
         }
 
@@ -131,20 +131,20 @@ class Monstre : public Case{
                         //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
                         if (proba_attaque_monstre <= 0.5) {
                             aventurier.setPV(max(0, aventurier.getPV() - valeur)); 
-                            std::cout << " Vous venez de subir " << valeur << " points de dégâts de la part du monstre" << std::endl;
+                            std::cout << " Vous venez de subir " << valeur << " points de degats de la part du monstre" << std::endl;
                             est_vaincu = false;
                             std::cout << "PV restant : " << aventurier.getPV() << std::endl;
                         }
 
                         else {
-                            std::cout << "Flop du monstre, aucun dégât subi" << std::endl;
+                            std::cout << "Flop du monstre, aucun degat subi" << std::endl;
                             est_vaincu = false;
                         }
 
                         // le joueur attaque le monstre avec une probabilité de 30% : 
                         if (proba_attaque_joueur <= 0.5){
                             pv -= 50; 
-                            std::cout << "Un coup critique a été donné au monstre" << std::endl;
+                            std::cout << "Un coup critique a ete donne au monstre" << std::endl;
                             std::cout << "PV restant au monstre :" << pv << std::endl;
 
                             if (pv<=0){
@@ -155,7 +155,7 @@ class Monstre : public Case{
                             }
                         }
                         else {
-                            std::cout << "Le joueur est fatigué... il a raté son attaque" << std::endl;
+                            std::cout << "Le joueur est fatigue... il a rate son attaque" << std::endl;
                             est_vaincu = false;
                         }
                     }

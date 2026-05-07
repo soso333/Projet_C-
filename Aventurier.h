@@ -216,7 +216,7 @@ class Aventurier {
                     };
                     cout << "" << endl;
                     afficherStatut();
-                    cout << "Distance à la sortie : " << distance << " cases" << endl;
+                    cout << "Distance a la sortie : " << distance << " cases" << endl;
 
                     cin >> direction;
                 }
@@ -255,6 +255,10 @@ class Aventurier {
                         deplacer(pas_x, pas_y); // on déplace le joueur
                         d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
                         
+                        // Condition pour afficher GAME OVER qui est en dehors de la boucle
+                        if(!estVivant()){
+                            break;
+                        }
                         // calcul du nouveau chemin optimal après déplacement
                         chemin = d.trouverChemin({x,y}, {d.h-1,d.l-1});
                         distance = chemin.size()-1;
@@ -285,12 +289,12 @@ class Aventurier {
                     };
                     cout << "" << endl;
                     afficherStatut();
-                    cout << "Distance à la sortie : " << distance << " cases" << endl;
+                    cout << "Distance a la sortie : " << distance << " cases" << endl;
 
                     
                     // AFFICHAGE VICTOIRE
                     if (x == d.h-1 && y == d.l-1){
-                        cout << "FELICITATIONS !! Vous avez gagné la partie !!" << endl;
+                        cout << "FELICITATIONS !! Vous avez gagne la partie !!" << endl;
                         return;
                     }
 
