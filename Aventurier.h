@@ -160,7 +160,11 @@ class Aventurier {
             cout << "Sante : " << pv << "/100" << endl;
             cout << "Inventaire : " << inventaire << " tresors" << endl;
         };
-
+        
+        friend std::ostream& operator<<(std::ostream& os, Aventurier& a) {
+            os << a.constafficher();
+            return os;
+        }
         void boucleDeJeu(Donjon& d){
             int nx=0;
             int ny=0;
@@ -182,7 +186,7 @@ class Aventurier {
                     for(int i = 0; i<d.h; i++){
                         for(int j = 0; j<d.l; j++){
                             if (i == x && j == y) {
-                                cout << constafficher();
+                                std::cout << *this;
                             }
                             else {
 
@@ -197,7 +201,7 @@ class Aventurier {
                                     cout << ".";
                                 }
                                 else{
-                                cout << d.grille[i][j] -> afficher(); 
+                                cout << *(d.grille[i][j]); 
                                 }
                             }
                         };
@@ -258,10 +262,10 @@ class Aventurier {
                     for(int i = 0; i<d.h; i++){
                         for(int j = 0; j<d.l; j++){
                             if (i == x && j == y) {
-                                cout << constafficher();
+                                cout << *this;
                             }
                             else {
-                                cout << d.grille[i][j] -> afficher(); 
+                                cout << *(d.grille[i][j]); 
                             }
                         };
                     cout << endl;
@@ -289,9 +293,10 @@ class Aventurier {
             return;
 
         };
+        
+        
 
 };
-
 #endif
 
 

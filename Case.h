@@ -43,7 +43,11 @@ class Case {
         void setVisite(bool visit){
             visite = visit;
         };
-
+        
+        friend std::ostream& operator<<(std::ostream& os, Case& c) {
+            os << c.afficher();
+            return os;
+        }
         
 
 };
