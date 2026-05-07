@@ -6,7 +6,45 @@ using namespace std;
 #define AVENTURIER_H
 
 class Aventurier {
+    /* Classe permettant de définir le joueur, ses déplacements, ainsi que la boucle de jeu.
+
+    Paramètres :
+        - pv : int
+            Points de vie du joueur.
+        - x : int
+            Position en x du joueur dans le donjon.
+        - y : int
+            Position en y du joueur dans le donjon.
+        - inventaire : int
+            Nombre de trésors ramassés par le joueur au cours de la partie.
+        - x_precedent : int
+            Position en x à l'instant t-1 du joueur dans le donjon.
+        - y_precedent : int
+            Position en y à l'instant t-1 du joueur dans le donjon.
+        - pas_x : int
+            déplacement en x du joueur dans le donjon.
+        - pas_y : int
+            déplacement en y du joueur dans le donjon.
+    
+    Méthodes :
+        - Aventurier()
+            Constructeur de la classe Aventurier.
+        - ~Aventurier()
+            Destructeur de la classe Aventurier.
+        - constafficher() : char
+            Permet de définir l'affichage du personnage dans la donjon.
+        - deplacer(int nx, int ny) : void
+            Permet de déplacer le joueur d'un déplacement nx en x et ny en y dans le donjon.
+        - estVivant() : bool
+            Permet de vérifier que le joueur est toujours en vie (pv > 0) pour définir la condition de fin de jeu.
+        - afficherStatut() : void
+            Permet l'affichage de l'état du joueur.
+        - boucleDeJeu(Donjon& d) : void
+            Définit les différentes étapes du jeu et permet de gérer la partie.
+        */
+
     public:
+        // etat du joueur
         int pv;
         int x, y;
         int inventaire;
@@ -18,6 +56,7 @@ class Aventurier {
         int pas_x, pas_y;
     
     public:
+        // Constructeur par défault
         Aventurier(){
            pv = 100;
            x = 0;
@@ -66,10 +105,11 @@ class Aventurier {
             int ny=0;
 
             vector<pair<int,int>> chemin;   // pour calcul chemin optimal
-            int distance;
+            int distance; // pour affichage de la distance à la sortie
             chemin = d.trouverChemin({0,0}, {d.h-1,d.l-1});
             distance = chemin.size()-1;
 
+            // BOUCLE TANT QUE LE JOUEUR EST VIVANT
             while (estVivant() == true){
                 
                 char direction;
@@ -109,6 +149,7 @@ class Aventurier {
                     cin >> direction;
                 }
 
+
                 else {
                     //réinitialisation des pas du joueur à chaque itération : 
                     pas_x = 0; 
@@ -140,14 +181,17 @@ class Aventurier {
                     
                     nx = x + pas_x;
                     ny = y + pas_y;
+
                     //on vérifie qu'on fonce pas sur un mur
                     if (nx>=0 && nx<d.h && ny>=0 && ny<d.l && d.grille[x+pas_x][y+pas_y] -> type != TypeCase::Mur) {
-                        deplacer(pas_x, pas_y);
+                        deplacer(pas_x, pas_y); // on déplace le joueur
                         d.grille[x][y] -> appliqueEffet(*this); //on applique l'effet de la case sur le joueur
                         
+                        // calcul du nouveau chemin optimal après déplacement
                         chemin = d.trouverChemin({x,y}, {d.h-1,d.l-1});
                         distance = chemin.size()-1;
 
+                        // remplacement du trésor par un passage après ramassage
                         if (d.grille[nx][ny] -> type == TypeCase::Tresor){
                             d.grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
                         }
