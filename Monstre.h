@@ -133,7 +133,6 @@ class Monstre : public Case{
                     if (pv<=0){
                         est_vaincu = true; 
                         this->vaincu();
-                        //this veut dire moi meme, genre la classe dans laquelle je suuis
 
                     }
                 }

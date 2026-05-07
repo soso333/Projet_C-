@@ -78,7 +78,6 @@ class Aventurier {
         };
 
         void deplacer(int nx, int ny){
-            // si (x+nx,y+ny) dans grille est différent de MUR => x = x + nx et y = y + ny
             x_precedent = x;
             y_precedent = y;
             x = x + nx;
@@ -157,24 +156,20 @@ class Aventurier {
 
                     // LECTURE TOUCHE
                     if (direction == 'z'){
-                    // deplacer(-1, 0);
 
                     //petit changement pour se déplacer uniquement si y a pas un mur sur le chemin
                     pas_x = -1;
                     pas_y = 0;
                     }
                     else if (direction == 's') {
-                    //  deplacer(1, 0);
                         pas_x = 1;
                         pas_y = 0;
                     }
                     else if (direction == 'q') {
-                    // deplacer(0, -1);
                         pas_x = 0; 
                         pas_y = -1;
                     }
                     else if (direction == 'd') {
-                    //  deplacer(0, 1);
                         pas_x = 0; 
                         pas_y = 1;
                     }
@@ -220,9 +215,6 @@ class Aventurier {
                         return;
                     }
 
-                    /*else {
-                        cout << "Tu es face à un mur l'équipe" << endl;
-                    }*/
 
                     cin >> direction;
                 }

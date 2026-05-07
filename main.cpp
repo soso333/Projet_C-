@@ -2,21 +2,15 @@
 #include "Donjon.h"
 #include "Aventurier.h"
 
-/*
-void resoudreCase(Case* c){
-    c.appliqueEffet();
-};
-*/
-
 
 
 int main() {
-    Donjon terrain;
-    Aventurier joueur;
+    Donjon terrain; // initialisation du donjon
+    Aventurier joueur;  // initialisation du joueur
 
-    terrain.initialiserGrille(15,7);
-    terrain.placerElements();
+    terrain.initialiserGrille(15,7); // création du donjon
+    terrain.placerElements();  // placement des monstres, trésors, pièges, ...
 
-    joueur.boucleDeJeu(terrain);
+    joueur.boucleDeJeu(terrain); // lancement du jeu
     return 0;
 }

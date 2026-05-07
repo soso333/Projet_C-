@@ -7,7 +7,7 @@
 #include "Monstre.h"
 #include "Piege.h"
 
-
+// Création des cases en fonction du type
 Case* CaseFactory::creerCase(TypeCase type) {
     if (type == TypeCase::Mur) {
         return new Mur();
