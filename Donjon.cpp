@@ -68,7 +68,14 @@ void Donjon::initialiserGrille(int largeur, int hauteur) {
 void Donjon::placerElements(){
     for(int i = 0; i<h; i++){
         for(int j = 0; j<l; j++){
-            if(grille[i][j]->afficher() == ' '){
+            bool entree;
+            if(i == 0 && j == 0){
+                entree = true;
+            }
+            else{
+                entree = false;
+            }
+            if(grille[i][j]->afficher() == ' ' && entree == false){
                 int r = rand()%100 + 1;
                 if(r < 5){
                     delete grille[i][j];
