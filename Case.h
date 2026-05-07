@@ -34,7 +34,7 @@ class Case {
             
     public:
         TypeCase type; 
-        virtual char afficher() = 0; 
+        virtual char afficher() const = 0; 
         virtual void appliqueEffet(Aventurier& aventurier) = 0;
         virtual ~Case() = default;
         bool getVisite(){
@@ -43,6 +43,12 @@ class Case {
         void setVisite(bool visit){
             visite = visit;
         };
+
+        
+
 };
+
+
+
 
 #endif

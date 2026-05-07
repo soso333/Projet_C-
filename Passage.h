@@ -1,5 +1,7 @@
 #ifndef PASSAGE_H
 #define PASSAGE_H
+#include <iostream>
+using namespace std;
 #include "Case.h"
 
 class Passage : public Case {
@@ -19,7 +21,7 @@ class Passage : public Case {
             type = TypeCase::Passage;
         }
         
-        char afficher(){
+        char afficher()const override{
             char a = ' ';
             return a;
         }
@@ -27,6 +29,8 @@ class Passage : public Case {
         virtual void appliqueEffet(Aventurier& aventurier){ 
         }
 
+
+        
 };
 
 #endif

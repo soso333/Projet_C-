@@ -2,6 +2,7 @@
 #define MONSTRE_H
 
 #include <iostream>
+using namespace std;
 #include "Aventurier.h"
 #include "Case.h"
 #include <random>
@@ -82,7 +83,7 @@ class Monstre : public Case{
             pv = b;
         }
 
-        char afficher(){
+        char afficher()const override{
             char a = 'M';
             return a;
         }
@@ -142,6 +143,8 @@ class Monstre : public Case{
                 }
             }
         }
+
+
 };
 
 #endif

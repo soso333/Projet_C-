@@ -1,3 +1,5 @@
+#include <iostream>
+using namespace std;
 #include "CaseFactory.h"
 #include "Case.h"
 

@@ -1,5 +1,7 @@
 #ifndef PIEGE_H
 #define PIEGE_H
+#include <iostream>
+using namespace std;
 #include "Case.h"
 #include "Aventurier.h"
 
@@ -38,7 +40,7 @@ class Piege : public Case {
             degats = a; 
         }
 
-        char afficher(){
+        char afficher()const override{
             char a = 'T';
             return a;
         }
@@ -47,6 +49,8 @@ class Piege : public Case {
             aventurier.setPV(aventurier.getPV() - degats); 
             std::cout << "Vous venez de subir " << degats << "de la part du piège" << std::endl;
         }
+
+   
 };
 
 #endif

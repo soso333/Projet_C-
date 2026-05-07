@@ -1,5 +1,7 @@
 #ifndef MUR_H
 #define MUR_H
+#include <iostream>
+using namespace std;
 #include "Case.h"
 
 class Mur : public Case {
@@ -19,13 +21,16 @@ class Mur : public Case {
             type = TypeCase::Mur;
         }
         
-        char afficher(){
+        char afficher() const override{
             char a = '#';
             return a;
         }
 
         virtual void appliqueEffet(Aventurier& aventurier){ 
         }
+
+        
+
 };
 
 #endif

@@ -1,5 +1,7 @@
 #ifndef TRESOR_H
 #define TRESOR_H
+#include <iostream>
+using namespace std;
 #include "Case.h"
 #include "Aventurier.h"
 
@@ -35,7 +37,7 @@ class Tresor : public Case {
             valeur = a;
         }
 
-        char afficher(){
+        char afficher()const override{
             char b = '+';
             return b;
         }
@@ -45,6 +47,8 @@ class Tresor : public Case {
             aventurier.setInventaire(aventurier.getInventaire() + 1);
             std::cout << "Un trésor a été trouvé , vous gagnez " << valeur << "pv et un trésor" << std::endl;
         }
+
+      
 
 };
 
