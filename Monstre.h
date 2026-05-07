@@ -78,7 +78,7 @@ class Monstre : public Case{
             init();
         };
 
-        void init(int a = 20, int b = 50){
+        void init(int a = 20, int b = 100){
             valeur = a;
             pv = b;
         }
@@ -114,37 +114,55 @@ class Monstre : public Case{
                 std::cout << "Vous engagez le combat avec le monstre !" << std::endl;
                 est_fuite = false;
 
-                //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
-                if (proba_attaque_monstre <= 0.7) {
-                    aventurier.setPV(aventurier.getPV() - valeur); 
-                    std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monstre" << std::endl;
-                    est_vaincu = false;
-                }
+                while(est_vaincu == false && aventurier.getPV() > 0){ //tant que le monstre n'est pas vaincu et que le joueur n'est pas mort, le combat continue
 
-                else {
-                    std::cout << "flop du monstre, aucun dégât subi" << std::endl;
-                    est_vaincu = false;
-                }
+                    //on laisse le choix au joueur d'attaquer ou de fuir à chaque itération : 
+                    std::cout << " Souhaitez vous fuir (F) ? ou Souhaitez vous attaquer (A) ? F/A " << std::endl;
+                    char decision2; 
+                    std::cin >> decision2; 
 
-                // le joueur attaque le monstre avec une probabilité de 30% : 
-                if (proba_attaque_joueur <= 0.3){
-                    pv -= 50; 
-                    std::cout << "un coup critique a été donné au monstre" << std::endl;
-
-                    if (pv<=0){
-                        est_vaincu = true; 
-                        this->vaincu();
-
+                    if (decision2 == 'F' || decision2 == 'f') {
+                        est_fuite = true;
+                        //le joueur retourne alors à la case précédente : 
+                        this->fuite(aventurier); 
+                        break; //le combat s'arrête
                     }
-                }
-                else {
-                    std::cout << "Le joueur est fatigué... il a raté son attaque" << std::endl;
-                    est_vaincu = false;
+
+                    if (decision2 == 'A' || decision2 == 'a') {
+                        est_fuite = false;
+                    
+
+                        //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
+                        if (proba_attaque_monstre <= 0.5) {
+                            aventurier.setPV(aventurier.getPV() - valeur); 
+                            std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monstre" << std::endl;
+                            est_vaincu = false;
+                        }
+
+                        else {
+                            std::cout << "flop du monstre, aucun dégât subi" << std::endl;
+                            est_vaincu = false;
+                        }
+
+                        // le joueur attaque le monstre avec une probabilité de 30% : 
+                        if (proba_attaque_joueur <= 0.5){
+                            pv -= 50; 
+                            std::cout << "un coup critique a été donné au monstre" << std::endl;
+
+                            if (pv<=0){
+                                est_vaincu = true; 
+                                this->vaincu();
+
+                            }
+                        }
+                        else {
+                            std::cout << "Le joueur est fatigué... il a raté son attaque" << std::endl;
+                            est_vaincu = false;
+                        }
+                    }
                 }
             }
         }
-
-
 };
 
 #endif
