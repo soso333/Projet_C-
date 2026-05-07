@@ -1,0 +1,183 @@
+@#     #
+ # ### # ### #
+ # #T# # #   #
+ # # # #+# ###
+   # T # #   #
+#### ####### #
+            M#
+
+Position : ( 0 , 0 )
+Sante : 100/100
+Inventaire : 0 tresors
+Distance à la sortie : 48 cases
+
+
+Chemin optimal :
+
+@#.....#    ...
+.#.###.# ###.#.
+.#.#T#.# #...#.
+.#.# #.#+#.###.
+...#...# #...#.
+####.#######.#.
+    .........#.
+
+Position : ( 0 , 0 )
+Sante : 100/100
+Inventaire : 0 tresors
+Distance à la sortie : 48 cases
+
+
+Déplacement :
+
+ # @   #
+ # ### # ### #
+ # #T# # #   #
+ # # # #+# ###
+   # T # #   #
+#### ####### #
+            M#
+
+Position : ( 0 , 3 )
+Sante : 100/100
+Inventaire : 0 tresors
+Distance à la sortie : 37 cases
+
+
+Interaction monstre :
+
+ #     #
+ # ### # ### #
+ # #T# # #   #
+ # # # #+# ###
+   # T # #   #
+#### ####### #
+           @M#
+
+Position : ( 6 , 11 )
+Sante : 75/100
+Inventaire : 0 tresors
+Distance à la sortie : 19 cases
+d
+Oh non ! Un monstre est apparu... Souhaitez-vous fuir ?! Y/N
+n
+Vous engagez le combat avec le monstre !
+ Vous venez de subir 20dégâts de la part du monstre
+Le joueur est fatigué... il a raté son attaque
+
+
+Nouveau calcul du chemin optimal :
+
+ #     #    ...
+ # ### # ###.#.
+ # #T# # #...#.
+ # # # #+#.###.
+   # T # #..@#.
+#### ####### #.
+            M#.
+
+Position : ( 4 , 12 )
+Sante : 55/100
+Inventaire : 0 tresors
+Distance à la sortie : 16 cases
+
+
+Ramassage du trésor :
+
+Un trésor a été trouvé , vous gagnez 10pv et un trésor
+ #     #
+ # ### # ### #
+ # #T# # #   #
+ # # # #@# ###
+   # T # #   #
+#### ####### #
+            M#
+
+Position : ( 3 , 8 )
+Sante : 65/100
+Inventaire : 1 tresors
+Distance à la sortie : 15 cases
+s
+ #     #
+ # ### # ### #
+ # #T# # #   #
+ # # # # # ###
+   # T #@#   #
+#### ####### #
+            M#
+
+Position : ( 4 , 8 )
+Sante : 65/100
+Inventaire : 1 tresors
+Distance à la sortie : 16 cases
+
+
+Victoire :
+
+ #     #
+ # ### # ### #
+ # #T# # #   #
+ # # # # # ###
+   # T # #   #
+#### ####### #
+            M#@
+
+Position : ( 6 , 14 )
+Sante : 65/100
+Inventaire : 1 tresors
+Distance à la sortie : 0 cases
+FELICITATIONS !! Vous avez gagné la partie !!
+
+
+Autre taille de labyrinthe :
+
+@#
+ # #####
+   # #
+#### # ##
+ T   # #
+ ### # #
+ + # #
+ #T# ###
+ # # #
+ # # # ##
+ # # #
+ # #####
+M# #   #M
+## # # #
+   # # #
+ ### # #
+ M   # +
+
+Position : ( 0 , 0 )
+Sante : 100/100
+Inventaire : 0 tresors
+Distance à la sortie : 36 cases
+
+
+Défaite :
+
+ #
+ # #####
+   # #
+#### # ##
+ T   # #
+ ### # #
+ + # #
+ #T# ###
+ # # #
+ # # # ##
+ # # #
+ # #####
+M# #   #@
+## # # #
+   # # #
+ ### # #
+ M   # +
+
+Position : ( 12 , 8 )
+Sante : 0/100
+Inventaire : 0 tresors
+Distance à la sortie : 4 cases
+z
+GAME OVER :(
