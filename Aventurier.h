@@ -70,6 +70,9 @@ class Aventurier {
         int x, y;
         int inventaire;
 
+        //permet de dire au joueur si le monstre est vaincu ou pas
+        bool monstre_vaincu = false;
+
         //permet au joueur de fuir
         int x_precedent, y_precedent;
         
@@ -92,6 +95,10 @@ class Aventurier {
         };
 
         ~Aventurier() = default;
+
+        //pour vérifier si le monstre est mort : 
+        void set_monstre_vaincu(bool _monstre_vaincu){monstre_vaincu = _monstre_vaincu;};
+        bool get_monstre_vaincu(){return monstre_vaincu;};
 
         int getPV() {
             return pv;
@@ -255,6 +262,12 @@ class Aventurier {
                         // remplacement du trésor par un passage après ramassage
                         if (d.grille[nx][ny] -> type == TypeCase::Tresor){
                             d.grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
+                        }
+
+                        //remplacement du monstre par un passage après sa mort
+                        if (d.grille[nx][ny] -> type == TypeCase::Monstre && get_monstre_vaincu() == true){
+                            d.grille[x][y] = CaseFactory::creerCase(TypeCase::Passage);
+                            this->set_monstre_vaincu(false);
                         }
                     }
 

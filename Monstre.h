@@ -150,6 +150,7 @@ class Monstre : public Case{
                             if (pv<=0){
                                 est_vaincu = true; 
                                 this->vaincu();
+                                aventurier.set_monstre_vaincu(true); //permet de dire au joueur que le monstre est vaincu pour que la case disparaisse
 
                             }
                         }
