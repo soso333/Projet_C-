@@ -74,6 +74,7 @@ class Aventurier {
                 
                 char direction;
 
+                // APPUIE SUR P POUR AFFICHAGE CHEMIN OPTIMAL
                 if (direction == 'p'){
 
                     // AFFICHAGE DU DONJON ET JOUEUR
@@ -83,6 +84,8 @@ class Aventurier {
                                 cout << constafficher();
                             }
                             else {
+
+                                // AFFICHAGE CHEMIN OPTIMAL
                                 bool dans_chemin = false;
                                 for (int k = 0; k<chemin.size();k++){
                                     if (chemin[k].first == i && chemin[k].second == j){

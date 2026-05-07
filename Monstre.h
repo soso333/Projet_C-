@@ -116,7 +116,7 @@ class Monstre : public Case{
                 //le monstre attaque le joueur avec une probabilité de 70% de réussite : 
                 if (proba_attaque_monstre <= 0.7) {
                     aventurier.pv -= valeur; 
-                    std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monde" << std::endl;
+                    std::cout << " Vous venez de subir " << valeur << "dégâts de la part du monstre" << std::endl;
                     est_vaincu = false;
                 }
 

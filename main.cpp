@@ -14,7 +14,7 @@ int main() {
     Donjon terrain;
     Aventurier joueur;
 
-    terrain.initialiserGrille(7,15);
+    terrain.initialiserGrille(15,7);
     terrain.placerElements();
 
     joueur.boucleDeJeu(terrain);
